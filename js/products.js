@@ -14,7 +14,7 @@ function showCategoriesList(array) { /* funcion para mostrar los items con image
                 </div>
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
-                        <div class="mb-1">
+                        <div class="mb-1"> 
                             <h4>${product.name} - ${product.currency}  ${product.cost}</h4>  
                             <p>${product.description}</p> 
                         </div>
@@ -25,7 +25,7 @@ function showCategoriesList(array) { /* funcion para mostrar los items con image
         </div>`;
     }
 
-    document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+    document.getElementById("cat-list-containers").innerHTML = htmlContentToAppend;
 }
 
 fetch(CARS_URL) /* hicimos el fetch a la constante que va al url, que nos de una respuesta y mostar los items como los habiamos definido previamente en la funcion, sino nos va a saltar un mensaje que dice Error al cargar los datos */
