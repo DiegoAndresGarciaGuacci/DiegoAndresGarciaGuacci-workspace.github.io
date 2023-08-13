@@ -3,6 +3,7 @@ const CARS_URL = "https://japceibal.github.io/emercado-api/cats_products/101.jso
 
 function showCategoriesList(array) { /* funcion para mostrar los items con imagen, precio, nombre, currency y cantidad vendidos*/
     let htmlContentToAppend = "";
+    
 
     for (let i = 0; i < array.length; i++) {
         let product = array[i];
