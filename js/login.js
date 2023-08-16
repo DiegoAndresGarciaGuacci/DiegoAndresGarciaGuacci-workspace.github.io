@@ -1,7 +1,7 @@
 const 
 $submit= document.getElementById("submit"),
-$password= document.getElementById("floatingPassword"),
-$username= document.getElementById("floatingInput");
+$password= document.getElementById("password"),
+$username= document.getElementById("username");
 
 document.addEventListener("click", (e)=>{
     if(e.target === $submit){
