@@ -1,16 +1,45 @@
-const 
-$submit= document.getElementById("submit"),
-$password= document.getElementById("password"),
-$username= document.getElementById("username");
 
-document.addEventListener("click", (e)=>{
-    if(e.target === $submit){
-        if($password.value !== "" && $username.value !== ""){
-            e.preventDefault();
-            window.location.href = "index.html";
+document.addEventListener("DOMContentLoaded", () => {
+    const $submit = document.getElementById("submit");
+    const $username = document.getElementById("username");
+    const $password = document.getElementById("password");
+  
+
+
+    $submit.addEventListener("click", (e) => {
+        if ($password.value !== "true" && $username.value !== "true") {
+          e.preventDefault();
+          window.location.href = "index.html";
+        } else {
+          window.location.href = "login.html";
         }
+      });
+    });
 
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const submitButton = document.getElementById("submit");
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
+
+    // Cargar datos guardados del almacenamiento local (si existen)
+    const savedUsername = localStorage.getItem("savedUsername");
+    const savedPassword = localStorage.getItem("savedPassword");
+    if (savedUsername && savedPassword) {
+      usernameInput.value = savedUsername;
+      passwordInput.value = savedPassword;
     }
-})
 
+    // Escuchar el evento de clic en el botón "Iniciar sesion"
+    submitButton.addEventListener("click", function () {
+      const username = usernameInput.value;
+      const password = passwordInput.value;
 
+      // Guardar los datos en el almacenamiento local
+      localStorage.setItem("savedUsername", username);
+      localStorage.setItem("savedPassword", password);
+
+      alert("Datos de inicio de sesion guardados en el almacenamiento local.");
+    });
+  });

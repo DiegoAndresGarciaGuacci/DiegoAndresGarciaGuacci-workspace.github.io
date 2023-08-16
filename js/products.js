@@ -3,6 +3,7 @@ const CARS_URL = "https://japceibal.github.io/emercado-api/cats_products/101.jso
 
 function showCategoriesList(array) { /* funcion para mostrar los items con imagen, precio, nombre, currency y cantidad vendidos*/
     let htmlContentToAppend = "";
+    
 
     for (let i = 0; i < array.length; i++) {
         let product = array[i];
@@ -25,7 +26,7 @@ function showCategoriesList(array) { /* funcion para mostrar los items con image
         </div>`;
     }
 
-    document.getElementById("carros").innerHTML = htmlContentToAppend;
+    document.getElementById("cat-list-containers").innerHTML = htmlContentToAppend;
 }
 
 fetch(CARS_URL) /* hicimos el fetch a la constante que va al url, que nos de una respuesta y mostar los items como los habiamos definido previamente en la funcion, sino nos va a saltar un mensaje que dice Error al cargar los datos */
