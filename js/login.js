@@ -3,20 +3,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const $submit = document.getElementById("submit");
     const $username = document.getElementById("username");
     const $password = document.getElementById("password");
+   
   
 
 
     $submit.addEventListener("click", (e) => {
-        if ($password.value !== "true" && $username.value !== "true") {
+        
+        if ($password.value !== "" && $username.value !== "") {
           e.preventDefault();
           window.location.href = "index.html";
-        } else {
-          window.location.href = "login.html";
-        }
+        } 
       });
     });
-
-
+   
 
 document.addEventListener("DOMContentLoaded", function () {
     const submitButton = document.getElementById("submit");
@@ -27,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const savedUsername = localStorage.getItem("savedUsername");
     const savedPassword = localStorage.getItem("savedPassword");
     if (savedUsername && savedPassword) {
+          window.location.href = "index.html";
       usernameInput.value = savedUsername;
       passwordInput.value = savedPassword;
     }
@@ -43,3 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Datos de inicio de sesion guardados en el almacenamiento local.");
     });
   });
+
+
+  
