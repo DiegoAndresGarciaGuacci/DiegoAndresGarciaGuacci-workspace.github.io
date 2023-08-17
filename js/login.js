@@ -44,4 +44,30 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-  
+  function mostrarContrasena(){
+    var tipo = document.getElementById("password");
+    if(tipo.type == "password"){
+        tipo.type = "text";
+    }else{
+        tipo.type = "password";
+    }
+}
+
+(() => {
+  'use strict'
+
+
+  const forms = document.querySelectorAll('.needs-validation')
+
+ 
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
