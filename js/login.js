@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const $password = document.getElementById("password");
    
   
-
+   
 
     $submit.addEventListener("click", (e) => {
-        
-        if ($password.value !== "" && $username.value !== "") {
+      var re = /\S+@\S+\.\S+/;
+        if ( $password.value.length >= 6 &&  re.test($username.value)) {
           e.preventDefault();
           window.location.href = "index.html";
         } 
@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("savedUsername", username);
       localStorage.setItem("savedPassword", password);
 
-      alert("Datos de inicio de sesion guardados en el almacenamiento local.");
     });
   });
 
