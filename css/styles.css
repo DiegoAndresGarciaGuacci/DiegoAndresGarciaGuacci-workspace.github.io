@@ -191,11 +191,11 @@ a.custom-card:hover {
 
 
 #titulo-carros h2, #titulo-carros h5{
-  text-align: center;
-  padding: 0.5em;
+  padding: 0.2em;
 }
+
 #titulo-carros h2 {
-  margin-top: 2.5em;
+  margin-top: 1em;
 }
 
 
