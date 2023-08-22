@@ -1,10 +1,13 @@
+const catID = localStorage.getItem("catID");
+const CARS_URL = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`; /*hicimos la constante con la url*/
 
-const CARS_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"; /*hicimos la constante con la url*/
-
-function showCategoriesList(array) { /* funcion para mostrar los items con imagen, precio, nombre, currency y cantidad vendidos*/
-    let htmlContentToAppend = "";
+function showCategoriesList(name, array) { /* funcion para mostrar los items con imagen, precio, nombre, currency y cantidad vendidos*/
+    let htmlContentToAppend = `
+    <div id="titulo-cat" class="text-center p-4">
+        <h2>${name}</h2>
+        <h5 class="lead">Los mejores productos, a los mejores precios.</h5>
+    </div>`;
     
-
     for (let i = 0; i < array.length; i++) {
         let product = array[i];
         htmlContentToAppend += `
@@ -26,14 +29,15 @@ function showCategoriesList(array) { /* funcion para mostrar los items con image
         </div>`;
     }
 
-    document.getElementById("carros").innerHTML = htmlContentToAppend;
+    document.getElementById("products-cat").innerHTML = htmlContentToAppend;
 }
 
 fetch(CARS_URL) /* hicimos el fetch a la constante que va al url, que nos de una respuesta y mostar los items como los habiamos definido previamente en la funcion, sino nos va a saltar un mensaje que dice Error al cargar los datos */
     .then(response => response.json())
     .then(data => {
+        const catName = data.catName
         const productsArray = data.products;
-        showCategoriesList(productsArray);
+        showCategoriesList(catName, productsArray);
     })
     .catch(error => {
         console.error("Error al cargar los datos", error);
