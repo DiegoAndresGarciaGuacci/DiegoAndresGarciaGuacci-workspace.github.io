@@ -190,12 +190,13 @@ a.custom-card:hover {
 }
 
 
-#titulo-carros h2, #titulo-carros h5{
+#titulo-cat h2, #titulo-cat h5{
   padding: 0.2em;
 }
 
-#titulo-carros h2 {
+#titulo-cat h2 {
   margin-top: 1em;
+  font-weight: bold;
 }
 
 
