@@ -22,4 +22,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 });
 
-
+// Simulando el inicio de sesión con el nombre de usuario
+const savedUsername = localStorage.getItem("savedUsername"); // Obtenemos el elemento donde se mostrará la información del usuario
+const userInfoElement = document.getElementById("user-info"); // Mostramos el nombre de usuario en la barra de navegación
+userInfoElement.textContent = ` ${savedUsername}`;
