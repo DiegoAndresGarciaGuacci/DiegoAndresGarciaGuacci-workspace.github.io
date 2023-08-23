@@ -33,12 +33,27 @@ function showCategoriesList(name, array) { /* funcion para mostrar los items con
 }
 
 fetch(CARS_URL) /* hicimos el fetch a la constante que va al url, que nos de una respuesta y mostar los items como los habiamos definido previamente en la funcion, sino nos va a saltar un mensaje que dice Error al cargar los datos */
-    .then(response => response.json())
-    .then(data => {
-        const catName = data.catName
-        const productsArray = data.products;
-        showCategoriesList(catName, productsArray);
-    })
-    .catch(error => {
-        console.error("Error al cargar los datos", error);
-    });
+.then(response => response.json())
+.then(data => {
+    const catName = data.catName
+    const productsArray = data.products;
+    const rangeFilterCount = document.getElementById("rangeFilterCount");
+
+rangeFilterCount.addEventListener("click", function() {
+    // Assuming productsArray is the array of products you fetched
+
+
+    const precioMinimo = document.getElementById("rangeFilterCountMin").value;
+    const precioMaximo =  document.getElementById("rangeFilterCountMax").value;;
+
+    const filteredProductsArray = productsArray.filter(product => {
+        return product.cost >= precioMinimo && product.cost <= precioMaximo;
+      });
+      showCategoriesList(catName, filteredProductsArray);
+});
+
+    showCategoriesList(catName, productsArray);
+})
+.catch(error => {
+    console.error("Error al cargar los datos", error);
+});
