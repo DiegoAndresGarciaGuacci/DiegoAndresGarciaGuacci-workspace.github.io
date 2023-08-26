@@ -100,7 +100,21 @@ fetch(CARS_URL)
       rangeFilterCountMax.value = ''; // Clear max price field
       showCategoriesList(catName, productsArray);
     });
+
+
+    document.getElementById("query").addEventListener("input", function(e) {
+        let value = e.target.value.trim().toLowerCase();
+        if (value.length > 0) {
+            const searched = productsArray.filter(product => (product.name.toLowerCase().includes(value)) || (product.description.toLowerCase().includes(value)) );
+            showCategoriesList(catName, searched);
+        } else {
+            showCategoriesList(catName, productsArray);
+        }
+    });
+
+
   })
+
   .catch(error => {
     console.error("Error al cargar los datos", error);
   });
