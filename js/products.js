@@ -14,7 +14,7 @@ function sortCategories(criteria, array) { //criterios para filtrar
     } else if (criteria === "relevancy") {
         result = array.slice().sort((a, b) => b.soldCount - a.soldCount);
     } else if (criteria === "rangePrice") {
-        const filtered = array.filter((product) => product.cost >= precioMin && product.cost <= precioMax);
+        const filtered = array.filter((product) => product.cost >= precioMin || product.cost <= precioMax);
         result = filtered
     }
     return result;
@@ -60,33 +60,42 @@ function sortAndShow (criteria, array, name){
     showCategoriesList(name, currentArray)
 } //mostrar array filtrado
 
-fetch(CARS_URL) /* hicimos el fetch a la constante que va al url, que nos de una respuesta y mostar los items como los habiamos definido previamente en la funcion, sino nos va a saltar un mensaje que dice Error al cargar los datos */
-.then(response => response.json())
-.then(data => {
-    const catName = data.catName
+fetch(CARS_URL)
+  .then(response => response.json())
+  .then(data => {
+    const catName = data.catName;
     const productsArray = data.products;
     showCategoriesList(catName, productsArray);
-   //eventos de los botones para filtrar
-    document.getElementById("rangeFilterCount").addEventListener("click", function() {
-        sortAndShow("rangePrice", productsArray, catName) // !!FALTA: condicional para no filtrar si no hay valores ingresados (ejemplo en categories.js)
-});
 
+    // Event listener for the filter button
+    document.getElementById("rangeFilterCount").addEventListener("click", function() {
+      if (rangeFilterCountMin.value.trim() !== '' || rangeFilterCountMax.value.trim() !== '') {
+        sortAndShow("rangePrice", productsArray, catName);
+      } else {
+        showCategoriesList(catName, productsArray);
+      }
+    });
+
+    // Event listeners for sorting buttons
     document.getElementById("sortAsc").addEventListener("click", function() {
-        sortAndShow("priceAsc", productsArray, catName)
-});
+      sortAndShow("priceAsc", productsArray, catName);
+    });
 
     document.getElementById("sortDesc").addEventListener("click", function() {
-        sortAndShow("priceDes", productsArray, catName)
-});
+      sortAndShow("priceDes", productsArray, catName);
+    });
 
     document.getElementById("sortByCount").addEventListener("click", function() {
-        sortAndShow("relevancy", productsArray, catName)
-});
+      sortAndShow("relevancy", productsArray, catName);
+    });
 
-    document.getElementById("clearRangeFilter").addEventListener("click", function(){
-    showCategoriesList(catName, productsArray)
-});
-})
-.catch(error => {
+    // Event listener for clearing filter
+    document.getElementById("clearRangeFilter").addEventListener("click", function() {
+      rangeFilterCountMin.value = ''; // Clear min price field
+      rangeFilterCountMax.value = ''; // Clear max price field
+      showCategoriesList(catName, productsArray);
+    });
+  })
+  .catch(error => {
     console.error("Error al cargar los datos", error);
-});
+  });
