@@ -1,21 +1,26 @@
 const catID = localStorage.getItem("catID"); //usar el ID de las categorias
 const CARS_URL = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`; /*hicimos la constante con la url*/
 
-function sortCategories(criteria, array) { //criterios para filtrar
+function sortCategories(criteria, array) { 
     let result = [];
-    const precioMin = document.getElementById("rangeFilterCountMin").value;
-    const precioMax =  document.getElementById("rangeFilterCountMax").value;
+    const precioMin = parseFloat(document.getElementById("rangeFilterCountMin").value);
+    const precioMax = parseFloat(document.getElementById("rangeFilterCountMax").value);
     if (criteria === "priceDes") {
-        const priceD = array.slice().sort((a, b) => a.cost - b.cost);
-        result = priceD;
+        result = array.slice().sort((a, b) => a.cost - b.cost);
     } else if (criteria === "priceAsc") {
-        const priceA = array.slice().sort((a, b) => b.cost - a.cost);
-        result = priceA;
+        result = array.slice().sort((a, b) => b.cost - a.cost);
     } else if (criteria === "relevancy") {
         result = array.slice().sort((a, b) => b.soldCount - a.soldCount);
     } else if (criteria === "rangePrice") {
-        const filtered = array.filter((product) => product.cost >= precioMin || product.cost <= precioMax);
-        result = filtered
+        if (!isNaN(precioMin) && isNaN(precioMax)) {
+            result = array.filter(product => product.cost >= precioMin);
+        } else if (isNaN(precioMin) && !isNaN(precioMax)) {
+            result = array.filter(product => product.cost <= precioMax);
+        } else if (!isNaN(precioMin) && !isNaN(precioMax)) {
+            result = array.filter(product => product.cost >= precioMin && product.cost <= precioMax);
+        } else {
+            result = array; // No filters applied, show all products
+        }
     }
     return result;
 }
