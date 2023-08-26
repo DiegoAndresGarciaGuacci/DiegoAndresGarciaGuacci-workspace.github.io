@@ -1,12 +1,34 @@
-const catID = localStorage.getItem("catID");
+const catID = localStorage.getItem("catID"); //usar el ID de las categorias
 const CARS_URL = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`; /*hicimos la constante con la url*/
 
+function sortCategories(criteria, array) { //criterios para filtrar
+    let result = [];
+    const precioMin = document.getElementById("rangeFilterCountMin").value;
+    const precioMax =  document.getElementById("rangeFilterCountMax").value;
+    if (criteria === "priceDes") {
+        const priceD = array.slice().sort((a, b) => a.cost - b.cost);
+        result = priceD;
+    } else if (criteria === "priceAsc") {
+        const priceA = array.slice().sort((a, b) => b.cost - a.cost);
+        result = priceA;
+    } else if (criteria === "relevancy") {
+        result = array.slice().sort((a, b) => b.soldCount - a.soldCount);
+    } else if (criteria === "rangePrice") {
+        const filtered = array.filter((product) => product.cost >= precioMin && product.cost <= precioMax);
+        result = filtered
+    }
+    return result;
+}
+
 function showCategoriesList(name, array) { /* funcion para mostrar los items con imagen, precio, nombre, currency y cantidad vendidos*/
-    let htmlContentToAppend = `
+    
+    let title = `
     <div id="titulo-cat" class="text-center p-4">
         <h2>${name}</h2>
         <h5 class="lead">Los mejores productos, a los mejores precios.</h5>
-    </div>`;
+    </div>`; //agrega el titulo de la categoria
+
+    let htmlContentToAppend = ""
     
     for (let i = 0; i < array.length; i++) {
         let product = array[i];
@@ -30,15 +52,41 @@ function showCategoriesList(name, array) { /* funcion para mostrar los items con
     }
 
     document.getElementById("products-cat").innerHTML = htmlContentToAppend;
+    document.getElementById("title").innerHTML = title;
 }
 
+function sortAndShow (criteria, array, name){
+    currentArray = sortCategories(criteria, array)
+    showCategoriesList(name, currentArray)
+} //mostrar array filtrado
+
 fetch(CARS_URL) /* hicimos el fetch a la constante que va al url, que nos de una respuesta y mostar los items como los habiamos definido previamente en la funcion, sino nos va a saltar un mensaje que dice Error al cargar los datos */
-    .then(response => response.json())
-    .then(data => {
-        const catName = data.catName
-        const productsArray = data.products;
-        showCategoriesList(catName, productsArray);
-    })
-    .catch(error => {
-        console.error("Error al cargar los datos", error);
-    });
+.then(response => response.json())
+.then(data => {
+    const catName = data.catName
+    const productsArray = data.products;
+    showCategoriesList(catName, productsArray);
+   //eventos de los botones para filtrar
+    document.getElementById("rangeFilterCount").addEventListener("click", function() {
+        sortAndShow("rangePrice", productsArray, catName) // !!FALTA: condicional para no filtrar si no hay valores ingresados (ejemplo en categories.js)
+});
+
+    document.getElementById("sortAsc").addEventListener("click", function() {
+        sortAndShow("priceAsc", productsArray, catName)
+});
+
+    document.getElementById("sortDesc").addEventListener("click", function() {
+        sortAndShow("priceDes", productsArray, catName)
+});
+
+    document.getElementById("sortByCount").addEventListener("click", function() {
+        sortAndShow("relevancy", productsArray, catName)
+});
+
+    document.getElementById("clearRangeFilter").addEventListener("click", function(){
+    showCategoriesList(catName, productsArray)
+});
+})
+.catch(error => {
+    console.error("Error al cargar los datos", error);
+});
