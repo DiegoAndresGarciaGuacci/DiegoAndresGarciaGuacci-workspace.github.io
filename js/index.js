@@ -1,7 +1,7 @@
-document.addEventListener("DOMContentLoaded", function(){
+const savedUsername = localStorage.getItem("savedUsername");
+const savedPassword = localStorage.getItem("savedPassword");
 
-    const savedUsername = localStorage.getItem("savedUsername");
-    const savedPassword = localStorage.getItem("savedPassword");
+document.addEventListener("DOMContentLoaded", function(){
     if (savedUsername && savedPassword) {
           document.getElementById("autos").addEventListener("click", function() {
             localStorage.setItem("catID", 101);
@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 });
 
-// Simulando el inicio de sesión con el nombre de usuario
-const savedUsername = localStorage.getItem("savedUsername"); // Obtenemos el elemento donde se mostrará la información del usuario
-const userInfoElement = document.getElementById("user-info"); // Mostramos el nombre de usuario en la barra de navegación
+// Mostrar usuario en navbar
+const userInfoElement = document.getElementById("user-info");
 userInfoElement.textContent = ` ${savedUsername}`;
