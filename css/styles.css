@@ -33,7 +33,7 @@ nav a {
   padding: 5em inherit;
   margin-bottom: 0;
   background-color: #53C0FB;
-  background: url('../img/44.png');
+  background: url('../img/46.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -205,6 +205,3 @@ a.custom-card:hover {
   width: 12.8em;
   background-color: #b3fef9;
 }
-
-
-
