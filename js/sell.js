@@ -147,3 +147,9 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 });
+
+const savedUsername = localStorage.getItem("savedUsername");
+
+// Mostrar usuario en navbar
+const userInfoElement = document.getElementById("user-info");
+userInfoElement.textContent = ` ${savedUsername}`;
