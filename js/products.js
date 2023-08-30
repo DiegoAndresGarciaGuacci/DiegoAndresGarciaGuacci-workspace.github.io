@@ -118,3 +118,9 @@ fetch(CARS_URL)
   .catch(error => {
     console.error("Error al cargar los datos", error);
   });
+
+const savedUsername = localStorage.getItem("savedUsername");
+
+// Mostrar usuario en navbar
+const userInfoElement = document.getElementById("user-info");
+userInfoElement.textContent = ` ${savedUsername}`;
