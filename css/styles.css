@@ -29,11 +29,11 @@ nav a {
 }
 
 .jumbotron {
-  height: 50vh;
+  height: 60vh;
   padding: 5em inherit;
   margin-bottom: 0;
   background-color: #53C0FB;
-  background: url('../img/cover_back.png');
+  background: url('../img/44.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
