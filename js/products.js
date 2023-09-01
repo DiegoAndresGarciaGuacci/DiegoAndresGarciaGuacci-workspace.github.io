@@ -19,7 +19,7 @@ function sortCategories(criteria, array) {
         } else if (!isNaN(precioMin) && !isNaN(precioMax)) {
             result = array.filter(product => product.cost >= precioMin && product.cost <= precioMax);
         } else {
-            result = array; // No filters applied, show all products
+            result = array; 
         }
     }
     return result;
