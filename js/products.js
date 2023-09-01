@@ -72,7 +72,7 @@ fetch(CARS_URL)
     const productsArray = data.products;
     showCategoriesList(catName, productsArray);
 
-    // Event listener for the filter button
+ 
     document.getElementById("rangeFilterCount").addEventListener("click", function() {
       if (rangeFilterCountMin.value.trim() !== '' || rangeFilterCountMax.value.trim() !== '') {
         sortAndShow("rangePrice", productsArray, catName);
@@ -81,7 +81,7 @@ fetch(CARS_URL)
       }
     });
 
-    // Event listeners for sorting buttons
+
     document.getElementById("sortAsc").addEventListener("click", function() {
       sortAndShow("priceAsc", productsArray, catName);
     });
@@ -94,10 +94,10 @@ fetch(CARS_URL)
       sortAndShow("relevancy", productsArray, catName);
     });
 
-    // Event listener for clearing filter
+    
     document.getElementById("clearRangeFilter").addEventListener("click", function() {
-      rangeFilterCountMin.value = ''; // Clear min price field
-      rangeFilterCountMax.value = ''; // Clear max price field
+      rangeFilterCountMin.value = ''; // campo precio min
+      rangeFilterCountMax.value = ''; // campo precio max 
       showCategoriesList(catName, productsArray);
     });
 
@@ -121,13 +121,13 @@ fetch(CARS_URL)
 
 const savedUsername = localStorage.getItem("savedUsername");
 
-// Mostrar usuario en navbar
+// Mostrar usuario en barra de navegacion de la pagina 
 const userInfoElement = document.getElementById("user-info");
 userInfoElement.textContent = ` ${savedUsername}`;
 
 // Función para cerrar sesión y borrar el usuario
 function cerrarSesion() {
-    // Borrar el nombre de usuario almacenado en el almacenamiento local
+    // Borrar el nombre de usuario y la contraseña almacenado en el almacenamiento local
     localStorage.removeItem("savedUsername");
     localStorage.removeItem("savedPassword");
     

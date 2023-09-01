@@ -28,7 +28,7 @@ userInfoElement.textContent = ` ${savedUsername}`;
 
 // Función para cerrar sesión y borrar el usuario
 function cerrarSesion() {
-    // Borrar el nombre de usuario almacenado en el almacenamiento local
+    // Borrar el nombre de usuario y la contraseña almacenado en el almacenamiento local
     localStorage.removeItem("savedUsername");
     localStorage.removeItem("savedPassword");
     
