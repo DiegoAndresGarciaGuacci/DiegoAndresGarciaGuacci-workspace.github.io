@@ -36,9 +36,9 @@ function showCategoriesList(name, array) { /* funcion para mostrar los items con
     let htmlContentToAppend = ""
     
     for (let i = 0; i < array.length; i++) {
-        let product = array[i];
+        let product = array[i]; 
         htmlContentToAppend += `
-        <div class="list-group-item list-group-item-action">
+        <div class="list-group-item list-group-item-action" id="${i}">
             <div class="row">
                 <div class="col-3">
                     <img src="${product.image}" alt="product image" class="img-thumbnail">
@@ -60,18 +60,33 @@ function showCategoriesList(name, array) { /* funcion para mostrar los items con
     document.getElementById("title").innerHTML = title;
 }
 
+function setProductId(productId) {
+  localStorage.setItem("prodId", productId);
+  console.log("ID del producto seleccionado:", productId);
+  window.location.href = "product-info.html";
+}
+  
 function sortAndShow (criteria, array, name){
-    currentArray = sortCategories(criteria, array)
-    showCategoriesList(name, currentArray)
-} //mostrar array filtrado
+  currentArray = sortCategories(criteria, array)
+  showCategoriesList(name, currentArray)
+} 
 
 fetch(CARS_URL)
   .then(response => response.json())
   .then(data => {
     const catName = data.catName;
-    const productsArray = data.products;
+    let productsArray = data.products;
     showCategoriesList(catName, productsArray);
 
+    
+      // Muestra los botones de productos
+    for (let i = 0; i < productsArray.length; i++){
+      console.log(document.getElementById(i))
+      document.getElementById(i).addEventListener("click", function(){
+        let product = productsArray[i];
+        setProductId(product.id)
+      });
+    }
  
     document.getElementById("rangeFilterCount").addEventListener("click", function() {
       if (rangeFilterCountMin.value.trim() !== '' || rangeFilterCountMax.value.trim() !== '') {
@@ -128,8 +143,8 @@ userInfoElement.textContent = ` ${savedUsername}`;
 // Función para cerrar sesión y borrar el usuario
 function cerrarSesion() {
     // Borrar el nombre de usuario y la contraseña almacenado en el almacenamiento local
-    localStorage.removeItem("savedUsername");
-    localStorage.removeItem("savedPassword");
+  localStorage.removeItem("savedUsername");
+  localStorage.removeItem("savedPassword");
     
 
     // Redirigir a la página de inicio de sesión 
