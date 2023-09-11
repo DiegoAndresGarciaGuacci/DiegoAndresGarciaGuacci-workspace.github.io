@@ -236,3 +236,42 @@ a.custom-card:hover {
   padding-left: 10px;
 }
 /* Fin de estilo product-info */
+
+/* Estilo a los comentarios del producto */
+
+.comment {
+  border: 1px solid #616060; 
+  padding-left: 50px;
+  width: 80%; /* ancho del borde */
+  margin: 5px 0; /* Espaciado vertical entre los comentarios */
+}
+.comment p {
+  margin-bottom: 2px; /* Ajusta el espaciado entre párrafos dentro de los comentarios */
+}
+
+.comment .user {
+  font-weight: bold; /* negrita para resaltar el nombre de usuario */
+}
+.comentarios{
+  font-size: 10px;
+}
+
+/* Estilos para las estrellas */
+.star-rating {
+  color: #f1c40f; /* Color de las estrellas (amarillo) */
+}
+
+.star-rating .fa-star {
+  font-size: 16px; /* Tamaño del icono de estrella */
+}
+
+/* Estilos para el icono de estrella vacía */
+.star-rating .fa-star-o {
+  font-size: 16px; /* Tamaño del icono de estrella vacía */
+  color: #ccc; /* Color de las estrellas vacías (gris) */
+}
+
+
+
+
+
