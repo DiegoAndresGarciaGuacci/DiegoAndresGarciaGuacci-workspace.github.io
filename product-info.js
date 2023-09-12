@@ -46,7 +46,9 @@ function displayProductDetails(productData) {
   }
 }
 
-// funcion para mostrar comentarios //
+/*-----------------------------------*\
+ * #funcion para mostrar comentarios
+\*-----------------------------------*/
 
 document.addEventListener("DOMContentLoaded", function () {
   const selectedProductCommentsId = localStorage.getItem("prodId");
@@ -69,7 +71,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-//////////// funcion para calificacion con estrellas //////////////
+
+
+/*-----------------------------------*\
+ * #funcion para calificacion con estrellasS
+\*-----------------------------------*/
 
 function createStarRating(score) {
   const starCount = 5; // Número total de estrellas
@@ -103,6 +109,7 @@ function displayProductComments(commentsData) {
 
       commentsHTML += `
         <div class="comment">
+        <button class="delete-comment-button" onclick="deleteComment(this)">&#10006;</button>
           <p><span class="user">${comment.user}</span> - ${comment.dateTime} <div class="star-rating">${starRatingHTML}</div></p>
           <p>${comment.description}</p> 
         </div>
@@ -114,7 +121,68 @@ function displayProductComments(commentsData) {
     console.error("No hay comentarios disponibles para este producto.");
   }
 }
+function deleteComment(button) {
+  const comment = button.parentElement; // Obtener el elemento padre del botón (el comentario)
+  comment.remove(); // Eliminar el comentario del DOM
+}
 
 
+/*-----------------------------------*\
+ * #FUNCION PARA ENVIAR COMENTARIOS
+\*-----------------------------------*/
 
+const commentForm = document.getElementById("comment-form");
+
+commentForm.addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevenir el envío predeterminado del formulario
+
+  // Obtener el valor del comentario y la calificación
+  const comment = document.getElementById("comment").value;
+  const rating = document.querySelector('input[name="rating"]:checked');
+
+  if (!rating) {
+    // mensaje de error por no seleccionar calificación
+    alert("Por favor, seleccione una calificación.");
+    return;
+  }
+if (!comment) {
+  // mensaje de error si no existe comentario 
+  alert("Por favor, ingese un comentario")
+  return;
+}
+/*-----------------------------------*\
+ * #Crear un nuevo comentario
+\*-----------------------------------*/
+  
+  const newCommentHTML = `
+  <div class="comment">
+      <button class="delete-comment-button" onclick="deleteComment(this)">&#10006;</button>
+      <div class="comment-content">
+        <p><span class="user">${savedUsername}</span> - ${formattedDate} ${formattedTime} <div class="star-rating">${createStarRating(Number(rating.value))}</div></p>
+        <p>${comment}</p>
+      </div>
+    </div>
+  `;
+
+  // Agregar el nuevo comentario al área de comentarios
+  const commentSection = document.getElementById("comment-section");
+  commentSection.insertAdjacentHTML("beforeend", newCommentHTML);
+
+  // Limpia el formulario
+  commentForm.reset();
+});
+
+/*-----------------------------------*\
+ * #Constante para que figue le usuario en el comentario
+\*-----------------------------------*/
+const savedUsername = localStorage.getItem("savedUsername");
+
+/*-----------------------------------*\
+ * #Obtener la fecha y hora actual
+\*-----------------------------------*/
+const currentDate = new Date();
+
+// Formatear la fecha y hora en el formato deseado
+const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
+const formattedTime = `${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`;
 

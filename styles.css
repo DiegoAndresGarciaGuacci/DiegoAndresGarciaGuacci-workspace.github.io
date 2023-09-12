@@ -271,7 +271,19 @@ a.custom-card:hover {
   color: #ccc; /* Color de las estrellas vacías (gris) */
 }
 
+.addComentario {
+  padding-left: 15px;
+}
+/* boton para eliminar comentario */
 
-
+.delete-comment-button {
+ 
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  
+ 
+}
 
 
