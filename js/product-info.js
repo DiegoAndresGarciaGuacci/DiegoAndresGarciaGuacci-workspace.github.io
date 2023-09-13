@@ -1,3 +1,6 @@
+// Mostrar usuario en navbar
+const userInfoElement = document.getElementById("user-info");
+userInfoElement.textContent = ` ${savedUsername}`;
 document.addEventListener("DOMContentLoaded", function () {
   const selectedProductId = localStorage.getItem("prodId");
 
