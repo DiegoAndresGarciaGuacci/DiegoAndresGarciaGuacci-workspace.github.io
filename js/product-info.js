@@ -71,33 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-
-
-/*-----------------------------------*\
- * #funcion para calificacion con estrellasS
-\*-----------------------------------*/
-
-function createStarRating(score) {
-  const starCount = 5; // Número total de estrellas
-  const filledStars = Math.round(score); // Número de estrellas llenas. La funcion Math.round rendea a numeros enteros.
-
-  let starRatingHTML = ''; // Cadena HTML para las estrellas
-
-  // Creamos estrellas llenas
-  for (let i = 0; i < filledStars; i++) {
-    starRatingHTML += '<i class="fa fa-star"></i>'; // fa fa-star hace referencia a estrellas llenas
-  }
-
-  // Creamos las estrellas vacías (las que faltan)
-  for (let i = filledStars; i < starCount; i++) {
-    starRatingHTML += '<i class="fa fa-star-o"></i>'; // fa fa-star-o hace referencia a estrellas vacias
-  }
-
-  return starRatingHTML; // Devolver la cadena HTML de las estrellas
-}
-
-
-
 function displayProductComments(commentsData) {
   // Verifica si hay comentarios en los datos
   if (commentsData && commentsData.length > 0) {
@@ -126,6 +99,52 @@ function deleteComment(button) {
   comment.remove(); // Eliminar el comentario del DOM
 }
 
+/*-----------------------------------*\
+ * #funcion para calificacion con estrellasS
+\*-----------------------------------*/
+
+function createStarRating(score) {
+  const starCount = 5; // Número total de estrellas
+  const filledStars = Math.round(score); // Número de estrellas llenas. La funcion Math.round rendea a numeros enteros.
+
+  let starRatingHTML = ''; // Cadena HTML para las estrellas
+
+  // Creamos estrellas llenas
+  for (let i = 0; i < filledStars; i++) {
+    starRatingHTML += '<i class="fa fa-star"></i>'; // fa fa-star hace referencia a estrellas llenas
+  }
+
+  // Creamos las estrellas vacías (las que faltan)
+  for (let i = filledStars; i < starCount; i++) {
+    starRatingHTML += '<i class="fa fa-star-o"></i>'; // fa fa-star-o hace referencia a estrellas vacias
+  }
+
+  return starRatingHTML; // Devolver la cadena HTML de las estrellas
+}
+
+
+
+/*-----------------------------------*\
+ * #Crear un nuevo comentario
+\*-----------------------------------*/
+  
+  const newCommentHTML = `
+  <div class="comment">
+      <button class="delete-comment-button" onclick="deleteComment(this)">&#10006;</button>
+      <div class="comment-content">
+        <p><span class="user">${savedUsername}</span> - ${formattedDate} ${formattedTime} <div class="star-rating">${createStarRating(Number(rating.value))}</div></p>
+        <p>${comment}</p>
+      </div>
+    </div>
+  `;
+
+  // Agregar el nuevo comentario al área de comentarios
+  const commentSection = document.getElementById("comment-section");
+  commentSection.insertAdjacentHTML("beforeend", newCommentHTML);
+
+  // Limpia el formulario
+  commentForm.reset();
+});
 
 /*-----------------------------------*\
  * #FUNCION PARA ENVIAR COMENTARIOS
@@ -150,30 +169,9 @@ if (!comment) {
   alert("Por favor, ingese un comentario")
   return;
 }
-/*-----------------------------------*\
- * #Crear un nuevo comentario
-\*-----------------------------------*/
-  
-  const newCommentHTML = `
-  <div class="comment">
-      <button class="delete-comment-button" onclick="deleteComment(this)">&#10006;</button>
-      <div class="comment-content">
-        <p><span class="user">${savedUsername}</span> - ${formattedDate} ${formattedTime} <div class="star-rating">${createStarRating(Number(rating.value))}</div></p>
-        <p>${comment}</p>
-      </div>
-    </div>
-  `;
-
-  // Agregar el nuevo comentario al área de comentarios
-  const commentSection = document.getElementById("comment-section");
-  commentSection.insertAdjacentHTML("beforeend", newCommentHTML);
-
-  // Limpia el formulario
-  commentForm.reset();
-});
 
 /*-----------------------------------*\
- * #Constante para que figue le usuario en el comentario
+ * #funcion para que aparezca el usuario registrado en el comentario
 \*-----------------------------------*/
 const savedUsername = localStorage.getItem("savedUsername");
 
@@ -182,7 +180,7 @@ const savedUsername = localStorage.getItem("savedUsername");
 \*-----------------------------------*/
 const currentDate = new Date();
 
-// Formatear la fecha y hora en el formato deseado
+// Se formatea la fecha y hora en el formato deseado(igual que los comentarios preestablecidos)
 const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
 const formattedTime = `${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`;
 
