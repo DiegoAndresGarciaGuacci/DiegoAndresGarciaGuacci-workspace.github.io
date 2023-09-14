@@ -1,6 +1,3 @@
-// Mostrar usuario en navbar
-const userInfoElement = document.getElementById("user-info");
-userInfoElement.textContent = ` ${savedUsername}`;
 document.addEventListener("DOMContentLoaded", function () {
   const selectedProductId = localStorage.getItem("prodId");
 
@@ -30,6 +27,8 @@ function displayProductDetails(productData) {
       <h1 class="productTitulo">${productData.name}</h1>
       </br>
       </br>
+      </br>
+      </br>
       <div class="productInfo"
       <p><strong>Imagenes ilustrativas:</strong></p>
       </br>
@@ -48,6 +47,7 @@ function displayProductDetails(productData) {
     //esto si se coloca arriba no iba a estar en el html por eso se coloca luego del get ele by id prod detail cont
   }
 }
+
 
 /*-----------------------------------*\
  * #funcion para mostrar comentarios
@@ -102,6 +102,7 @@ function deleteComment(button) {
   comment.remove(); // Eliminar el comentario del DOM
 }
 
+
 /*-----------------------------------*\
  * #funcion para calificacion con estrellasS
 \*-----------------------------------*/
@@ -122,32 +123,13 @@ function createStarRating(score) {
     starRatingHTML += '<i class="fa fa-star-o"></i>'; // fa fa-star-o hace referencia a estrellas vacias
   }
 
-  return starRatingHTML; // Devolver la cadena HTML de las estrellas
+  return starRatingHTML; // Devuelve la cadena HTML de las estrellas
 }
 
 
 
-/*-----------------------------------*\
- * #Crear un nuevo comentario
-\*-----------------------------------*/
-  
-  const newCommentHTML = `
-  <div class="comment">
-      <button class="delete-comment-button" onclick="deleteComment(this)">&#10006;</button>
-      <div class="comment-content">
-        <p><span class="user">${savedUsername}</span> - ${formattedDate} ${formattedTime} <div class="star-rating">${createStarRating(Number(rating.value))}</div></p>
-        <p>${comment}</p>
-      </div>
-    </div>
-  `;
 
-  // Agregar el nuevo comentario al área de comentarios
-  const commentSection = document.getElementById("comment-section");
-  commentSection.insertAdjacentHTML("beforeend", newCommentHTML);
 
-  // Limpia el formulario
-  commentForm.reset();
-});
 
 /*-----------------------------------*\
  * #FUNCION PARA ENVIAR COMENTARIOS
@@ -172,9 +154,30 @@ if (!comment) {
   alert("Por favor, ingese un comentario")
   return;
 }
+/*-----------------------------------*\
+ * #Crear un nuevo comentario
+\*-----------------------------------*/
+  
+  const newCommentHTML = `
+  <div class="comment">
+      <button class="delete-comment-button" onclick="deleteComment(this)">&#10006;</button> 
+      <div class="comment-content">
+        <p><span class="user">${savedUsername}</span> - ${formattedDate} ${formattedTime} <div class="star-rating">${createStarRating(Number(rating.value))}</div></p>
+        <p>${comment}</p>
+      </div>
+    </div>
+  `;
+
+  // Agregar el nuevo comentario al área de comentarios
+  const commentSection = document.getElementById("comment-section");
+  commentSection.insertAdjacentHTML("beforeend", newCommentHTML);
+
+  // Limpia el formulario
+  commentForm.reset();
+});
 
 /*-----------------------------------*\
- * #funcion para que aparezca el usuario registrado en el comentario
+ * #Funcion para que aparezca el usuario logeado 
 \*-----------------------------------*/
 const savedUsername = localStorage.getItem("savedUsername");
 
@@ -183,7 +186,10 @@ const savedUsername = localStorage.getItem("savedUsername");
 \*-----------------------------------*/
 const currentDate = new Date();
 
-// Se formatea la fecha y hora en el formato deseado(igual que los comentarios preestablecidos)
+// Formatear la fecha y hora en el formato presetablecido del json
 const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
 const formattedTime = `${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`;
 
+// Mostrar usuario en navbar
+const userInfoElement = document.getElementById("user-info");
+userInfoElement.textContent = ` ${savedUsername}`;
