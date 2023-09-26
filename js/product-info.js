@@ -26,27 +26,39 @@ document.addEventListener("DOMContentLoaded", function () {
 function displayProductDetails(productData) {
   // Crear el contenido HTML para mostrar los detalles del producto
   const productHTML = `
-      <h1 class="productTitulo">${productData.name}</h1>
-      </br>
-      </br>
-      </br>
-      </br>
-      <div class="productInfo"
+    <h1 class="productTitulo">${productData.name}</h1>
+    <br><br><br><br>
+    <div class="productInfo">
       <p><strong>Imagenes ilustrativas:</strong></p>
-      </br>
-      <div id="img" class="img"></div>
-      </br>
+      <br>
+      <div id="product-images-carousel" class="carousel">
+        <div id="carousel-inner" class="carousel-inner">
+          <!-- Aquí se mostrarán las imágenes del producto -->
+        </div>
+        <a class="carousel-control-prev" href="#product-images-carousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#product-images-carousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Siguiente</span>
+        </a>
+      </div>
       <p><strong>Precio:</strong> ${productData.currency} ${productData.cost}</p>
       <p><strong>Descripción:</strong> ${productData.description}</p>
       <p><strong>Cantidad Vendidos:</strong> ${productData.soldCount}</p>
       <p><strong>Categoria:</strong> ${productData.category}</p>
-      </div>
+    </div>
   `;
   document.getElementById("product-details-container").innerHTML = productHTML;
-  for (let i = 0; i < productData.images.length; i++){ //
-    let img = `<img src="${productData.images[i]}">` //comillas para definir un string 
-    document.getElementById("img").innerHTML += img
-    //esto si se coloca arriba no iba a estar en el html por eso se coloca luego del get ele by id prod detail cont
+
+  // Agregar las imágenes al carrusel
+  const carouselInner = document.getElementById("carousel-inner");
+  for (let i = 0; i < productData.images.length; i++) {
+    const img = document.createElement("img");
+    img.src = productData.images[i];
+    img.classList.add("carousel-image");
+    carouselInner.appendChild(img);
   }
 }
 
