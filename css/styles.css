@@ -308,3 +308,40 @@ a.custom-card:hover {
   background: #ddd;
   color: black;
 }
+
+/* Agrega estilos CSS para el carrusel */
+.carousel {
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+}
+
+.carousel-inner {
+  display: flex;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.carousel img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: auto;
+  padding: 0;
+  text-align: center;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.product-images-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
