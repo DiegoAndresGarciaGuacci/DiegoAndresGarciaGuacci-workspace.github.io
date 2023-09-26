@@ -177,6 +177,8 @@ footer p {
 
 main {
   min-height: calc(100vh - 210px);
+  margin-top: 30px; 
+  
 }
 
 a.custom-card,
@@ -237,6 +239,8 @@ a.custom-card:hover {
 }
 /* Fin de estilo product-info */
 
+
+
 /* Estilo a los comentarios del producto */
 
 .comment {
@@ -274,6 +278,7 @@ a.custom-card:hover {
 .addComentario {
   padding-left: 15px;
 }
+
 /* boton para eliminar comentario */
 
 .delete-comment-button {
@@ -286,4 +291,20 @@ a.custom-card:hover {
  
 }
 
+/* Estilo para el modo oscuro */
+.dark-theme {
+  background-color: #0f0f0fb0;
+  color: #fff;
+}
 
+/* Estilo para el modo claro */
+.light-theme {
+  background-color: #fff;
+  color: #000;
+}
+
+
+#navbar a:hover {
+  background: #ddd;
+  color: black;
+}
