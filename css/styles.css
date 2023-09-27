@@ -211,18 +211,6 @@ a.custom-card:hover {
   /* Estilo para product-info */
 
 }
-#img img {
-  
-  max-width: 25%; /* Ajusta el ancho  de la imagen */
-  height: auto; /* Mantiene la proporción de la imagen */
-  border: 4px solid #ccc; 
-  margin: 5px 10; 
-  
-}
-.img img:hover {
-  transform: scale(1.5); /* Agranda la imagen al pasar el cursor */
-  cursor: pointer; /* Cambia el cursor a una mano */
-}
 
 .productTitulo {
   text-align: center;
@@ -309,15 +297,46 @@ a.custom-card:hover {
   color: black;
 }
 
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  width: 30px;
-  height: 30px;
+/* Estilos para los botones de control */
+.boton-control {
+  background-color: transparent; /* Establecer el fondo transparente */
+  border: none; /* Eliminar el borde */
+  cursor: pointer; /* Cambiar el cursor al pasar el mouse */
 }
 
-.product-images-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Estilos para los iconos de las flechas */
+.boton-control i {
+  font-size: 24px; /* Tamaño de fuente de los iconos */
+  color: #03030396; /* Color de los iconos (puedes cambiarlo) */
+
+}
+
+
+#anterior {
+  position: absolute;
+  left: 225px; /* Ajusta la posición a la izquierda */
+  top: 60%;
+}
+
+/* Estilo para el botón siguiente */
+#siguiente {
+  position: absolute;
+  right: 225px; /* Ajusta la posición a la derecha */
+  top: 60%;
+}
+
+.boton-control i:hover {
+  color: #03030396;
+} 
+
+
+#img img {
+
+  width: 50%; /* Tamaño del ancho */
+  position: center; /* Fija la posición para que ocupe toda la pantalla */
+  top: 50%; /* La parte superior de la imagen se posiciona en el 50% de la pantalla */
+  left: 50%; /* La parte izquierda de la imagen se posiciona en el 50% de la pantalla */
+  transform: translate(50%, 0%); /* Centra la imagen horizontalmente y verticalmente */
+  z-index: 9999; /* Establece un valor alto para que la imagen esté por encima de otros elementos */
+  border: 4px solid #ccc; /* Borde opcional */
 }
