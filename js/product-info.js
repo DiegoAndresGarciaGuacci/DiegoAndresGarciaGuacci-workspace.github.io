@@ -49,11 +49,24 @@ function displayProductDetails(productData) {
   `;
   document.getElementById("product-details-container").innerHTML = productHTML;
   for (let i = 0; i < productData.relatedProducts.length; i++){ //
-    let product = ` <div id="related-img"> <img src="${productData.relatedProducts[i].image}"> 
-    <p>${productData.relatedProducts[i].name}</p> </div>`  // comillas para definir un string 
+    let redireccionar = productData.relatedProducts[i]
+    let product = `
+    <div id=relatedImages>
+    <img src="${redireccionar.image}" onclick="setRelatedProductsId(${redireccionar.id})">
+    <p>${redireccionar.name}</p></div>` 
+    //comillas para definir un string 
     document.getElementById("related").innerHTML += product
     //esto si se coloca arriba no iba a estar en el html por eso se coloca luego del get ele by id prod detail cont
   }
+ 
+}
+
+
+function setRelatedProductsId(id){
+  localStorage.setItem("prodId", id);
+  window.location.href = "product-info.html";
+
+
 }
 
 
