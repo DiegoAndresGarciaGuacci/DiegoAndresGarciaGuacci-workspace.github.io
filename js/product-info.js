@@ -40,11 +40,22 @@ function displayProductDetails(productData) {
       <p><strong>Descripción:</strong> ${productData.description}</p>
       <p><strong>Cantidad Vendidos:</strong> ${productData.soldCount}</p>
       <p><strong>Categoria:</strong> ${productData.category}</p>
-    </div>
-    
+      <p><strong>Productos relacionados:</strong></p>
+      <div id="related">
+      </div>
+     
+      </div>
+
   `;
   document.getElementById("product-details-container").innerHTML = productHTML;
+  for (let i = 0; i < productData.relatedProducts.length; i++){ //
+    let product = ` <div id="related-img"> <img src="${productData.relatedProducts[i].image}"> 
+    <p>${productData.relatedProducts[i].name}</p> </div>`  // comillas para definir un string 
+    document.getElementById("related").innerHTML += product
+    //esto si se coloca arriba no iba a estar en el html por eso se coloca luego del get ele by id prod detail cont
+  }
 }
+
 
 function ImageCarousel(images) {
   
