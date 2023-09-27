@@ -43,7 +43,7 @@ function displayProductDetails(productData) {
       <p><strong>Productos relacionados:</strong></p>
       <div id="related">
       </div>
-     
+      <p><strong>Comentarios:</strong></p>
       </div>
 
   `;
@@ -72,7 +72,7 @@ function setRelatedProductsId(id){
 
 function ImageCarousel(images) {
   
-  // Obtén referencias a elementos HTML
+  // Se crea las constantes para obtener referencias a elementos HTML
 
   const imgContainer = document.getElementById("img");
   const anteriorBtn = document.getElementById("anterior");
@@ -85,7 +85,7 @@ function ImageCarousel(images) {
   function cambiarSiguiente() {
     currentIndex++;
     if (currentIndex === images.length) {
-      currentIndex = 0; // Vuelve al primer elemento cuando llegas al final
+      currentIndex = 0; // Vuelve al primer elemento cuando llegas al final, esto tiene que estar sino no aparecen las imagenes.
     }
     actualizarCarrusel();
   }
@@ -104,7 +104,7 @@ function ImageCarousel(images) {
     imgContainer.innerHTML = `<img src="${images[currentIndex]}">`;
   }
 
-  // Agregar eventos de clic a los botones de control
+  //  botones de control funcionalidad 
   anteriorBtn.addEventListener("click", cambiarAnterior);
   siguienteBtn.addEventListener("click", cambiarSiguiente);
 
@@ -149,7 +149,7 @@ function displayProductComments(commentsData) {
   // Verifica si hay comentarios en los datos
   if (commentsData && commentsData.length > 0) {
     // Muestra los comentarios del producto
-    let commentsHTML = "<p><strong>Comentarios:</strong></p>";
+    let commentsHTML = "<p><strong></strong></p>";
 
     commentsData.forEach(comment => {
       const starRatingHTML = createStarRating(comment.score); // Se crea la calificación con estrellas
