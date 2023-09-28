@@ -5,19 +5,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${selectedProductId}.json`;
 
     fetch(PRODUCT_URL)
-      .then(response => response.json())
-      .then(productData => {
+      .then((response) => response.json())
+      .then((productData) => {
         // Mostrar la información del producto en la página
         displayProductDetails(productData);
         // Crear el carrusel con las imágenes del producto
         ImageCarousel(productData.images);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error al cargar los datos del producto", error);
       });
   } else {
     // Si no se ha seleccionado un producto, mostrar un mensaje de error o redirigir a otra página
-    document.getElementById("product-details-container").innerHTML = "<p>No se ha seleccionado ningún producto.</p>";
+    document.getElementById("product-details-container").innerHTML =
+      "<p>No se ha seleccionado ningún producto.</p>";
   }
 });
 
@@ -51,37 +52,32 @@ function displayProductDetails(productData) {
 
   `;
   document.getElementById("product-details-container").innerHTML = productHTML;
-  for (let i = 0; i < productData.relatedProducts.length; i++){ //
-    let redireccionar = productData.relatedProducts[i]
+  for (let i = 0; i < productData.relatedProducts.length; i++) {
+    //
+    let redireccionar = productData.relatedProducts[i];
     let product = `
     <div id=relatedImages>
     <img src="${redireccionar.image}" onclick="setRelatedProductsId(${redireccionar.id})">
-    <p>${redireccionar.name}</p></div>` 
-    //comillas para definir un string 
-    document.getElementById("related").innerHTML += product
+    <p>${redireccionar.name}</p></div>`;
+    //comillas para definir un string
+    document.getElementById("related").innerHTML += product;
     //esto si se coloca arriba no iba a estar en el html por eso se coloca luego del get ele by id prod detail cont
   }
- 
 }
 
-
-function setRelatedProductsId(id){
+function setRelatedProductsId(id) {
   localStorage.setItem("prodId", id);
   window.location.href = "product-info.html";
-
-
 }
 
-
 function ImageCarousel(images) {
-  
   // Se crea las constantes para obtener referencias a elementos HTML
 
   const imgContainer = document.getElementById("img");
   const anteriorBtn = document.getElementById("anterior");
   const siguienteBtn = document.getElementById("siguiente");
   const imgThumbnailsContainer = document.getElementById("img-thumbnails");
-  
+
   // Configura variables de control
   let currentIndex = 0;
 
@@ -108,7 +104,7 @@ function ImageCarousel(images) {
     imgContainer.innerHTML = `<img src="${images[currentIndex]}">`;
   }
 
-  //  botones de control funcionalidad 
+  //  botones de control funcionalidad
   anteriorBtn.addEventListener("click", cambiarAnterior);
   siguienteBtn.addEventListener("click", cambiarSiguiente);
 
@@ -118,13 +114,12 @@ function ImageCarousel(images) {
   // Agrega las miniaturas de las imágenes
   imgThumbnailsContainer.innerHTML = images
     .map((image, index) => {
-      const thumbnailClass = index === currentIndex ? "thumbnail active" : "thumbnail"; 
+      const thumbnailClass =
+        index === currentIndex ? "thumbnail active" : "thumbnail";
       return `<img src="${image}" class="${thumbnailClass}">`;
     })
     .join("");
-    
-};
-
+}
 
 /*-----------------------------------*\
  * #funcion para mostrar comentarios
@@ -137,21 +132,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const PRODUCTCOMMENTS_URL = `https://raw.githubusercontent.com/JaPCeibal/emercado-api/main/products_comments/${selectedProductCommentsId}.json`;
 
     fetch(PRODUCTCOMMENTS_URL)
-      .then(response => response.json())
-      .then(product_commentsData => {
+      .then((response) => response.json())
+      .then((product_commentsData) => {
         // Mostrar los comentarios del producto en la página
         displayProductComments(product_commentsData);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error al cargar los datos del producto", error);
       });
   } else {
     // Si no se ha seleccionado un producto, mostrar un mensaje de error o redirigir a otra página
-    document.getElementById("product-details-comments").innerHTML = "<p>No se ha seleccionado ningún producto.</p>";
+    document.getElementById("product-details-comments").innerHTML =
+      "<p>No se ha seleccionado ningún producto.</p>";
   }
 });
-
-
 
 function displayProductComments(commentsData) {
   // Verifica si hay comentarios en los datos
@@ -159,7 +153,7 @@ function displayProductComments(commentsData) {
     // Muestra los comentarios del producto
     let commentsHTML = "<p><strong></strong></p>";
 
-    commentsData.forEach(comment => {
+    commentsData.forEach((comment) => {
       const starRatingHTML = createStarRating(comment.score); // Se crea la calificación con estrellas
 
       commentsHTML += `
@@ -171,7 +165,8 @@ function displayProductComments(commentsData) {
       `;
     });
 
-    document.getElementById("product-details-comments").innerHTML = commentsHTML;
+    document.getElementById("product-details-comments").innerHTML =
+      commentsHTML;
   } else {
     console.error("No hay comentarios disponibles para este producto.");
   }
@@ -181,7 +176,6 @@ function deleteComment(button) {
   comment.remove(); // Eliminar el comentario del DOM
 }
 
-
 /*-----------------------------------*\
  * #funcion para calificacion con estrellasS
 \*-----------------------------------*/
@@ -190,7 +184,7 @@ function createStarRating(score) {
   const starCount = 5; // Número total de estrellas
   const filledStars = Math.round(score); // Número de estrellas llenas. La funcion Math.round rendea a numeros enteros.
 
-  let starRatingHTML = ''; // Cadena HTML para las estrellas
+  let starRatingHTML = ""; // Cadena HTML para las estrellas
 
   // Creamos estrellas llenas
   for (let i = 0; i < filledStars; i++) {
@@ -204,8 +198,6 @@ function createStarRating(score) {
 
   return starRatingHTML; // Devuelve la cadena HTML de las estrellas
 }
-
-
 
 /*-----------------------------------*\
  * #FUNCION PARA ENVIAR COMENTARIOS
@@ -225,20 +217,22 @@ commentForm.addEventListener("submit", function (event) {
     alert("Por favor, seleccione una calificación.");
     return;
   }
-if (!comment) {
-  // mensaje de error si no existe comentario 
-  alert("Por favor, ingese un comentario")
-  return;
-}
-/*-----------------------------------*\
+  if (!comment) {
+    // mensaje de error si no existe comentario
+    alert("Por favor, ingese un comentario");
+    return;
+  }
+  /*-----------------------------------*\
  * #Crear un nuevo comentario
 \*-----------------------------------*/
-  
+
   const newCommentHTML = `
   <div class="comment">
       <button class="delete-comment-button" onclick="deleteComment(this)">&#10006;</button> 
       <div class="comment-content">
-        <p><span class="user">${savedUsername}</span> - ${formattedDate} ${formattedTime} <div class="star-rating">${createStarRating(Number(rating.value))}</div></p>
+        <p><span class="user">${savedUsername}</span> - ${formattedDate} ${formattedTime} <div class="star-rating">${createStarRating(
+    Number(rating.value)
+  )}</div></p>
         <p>${comment}</p>
       </div>
     </div>
@@ -263,46 +257,55 @@ const savedUsername = localStorage.getItem("savedUsername");
 const currentDate = new Date();
 
 // Formatear la fecha y hora en el formato presetablecido del json
-const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
-const formattedTime = `${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`;
+const formattedDate = `${currentDate.getFullYear()}-${(
+  currentDate.getMonth() + 1
+)
+  .toString()
+  .padStart(2, "0")}-${currentDate.getDate().toString().padStart(2, "0")}`;
+const formattedTime = `${currentDate
+  .getHours()
+  .toString()
+  .padStart(2, "0")}:${currentDate
+  .getMinutes()
+  .toString()
+  .padStart(2, "0")}:${currentDate.getSeconds().toString().padStart(2, "0")}`;
 
 // Mostrar usuario en navbar
 const userInfoElement = document.getElementById("user-info");
 userInfoElement.textContent = ` ${savedUsername}`;
 
-
- /*-----------------------------------*\
+/*-----------------------------------*\
  * #Obtener el botón de cambio de tema
 \*-----------------------------------*/
- var toggleThemeButton = document.getElementById('toggle-theme');
+var toggleThemeButton = document.getElementById("toggle-theme");
 
- toggleThemeButton.addEventListener('click', function () {
-   // Se obtiene el elemento <body>
-   var body = document.body;
- 
-   // Se alterna entre las clases 'dark' y 'light' en el <body>
-   if (body.classList.contains('dark-theme')) {
-     body.classList.remove('dark-theme');
-     body.classList.add('light-theme');
-     localStorage.setItem('theme', 'light'); // guardo el modo en el localstorage para usarlo en las demas ventanas
-   } else {
-     body.classList.remove('light-theme');
-     body.classList.add('dark-theme');
-     localStorage.setItem('theme', 'dark');
-   }
- });
- 
-   document.addEventListener('DOMContentLoaded', function () {
-     // Verifico si hay un modo guardado en localstorage
-     var savedTheme = localStorage.getItem('theme');
-     var body = document.body;
-   
-     // Aplica el modo almacenado
-     if (savedTheme === 'light') {
-       body.classList.remove('dark-theme');
-       body.classList.add('light-theme');
-     } else if (savedTheme === 'dark') {
-       body.classList.remove('light-theme');
-       body.classList.add('dark-theme');
-     }
-   });
+toggleThemeButton.addEventListener("click", function () {
+  // Se obtiene el elemento <body>
+  var body = document.body;
+
+  // Se alterna entre las clases 'dark' y 'light' en el <body>
+  if (body.classList.contains("dark-theme")) {
+    body.classList.remove("dark-theme");
+    body.classList.add("light-theme");
+    localStorage.setItem("theme", "light"); // guardo el modo en el localstorage para usarlo en las demas ventanas
+  } else {
+    body.classList.remove("light-theme");
+    body.classList.add("dark-theme");
+    localStorage.setItem("theme", "dark");
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Verifico si hay un modo guardado en localstorage
+  var savedTheme = localStorage.getItem("theme");
+  var body = document.body;
+
+  // Aplica el modo almacenado
+  if (savedTheme === "light") {
+    body.classList.remove("dark-theme");
+    body.classList.add("light-theme");
+  } else if (savedTheme === "dark") {
+    body.classList.remove("light-theme");
+    body.classList.add("dark-theme");
+  }
+});
