@@ -29,11 +29,14 @@ function displayProductDetails(productData) {
     <div class="productInfo">
       <h3><strong>Imagenes ilustrativas:</strong></h3>
       </br>
+      
       <div id="img" class="img"></div>
+      
       <div class="controles">
       <button id="anterior" class="boton-control"><i  class="bi bi-arrow-left-circle-fill"></i></button>
       <button id="siguiente" class="boton-control"><i class="bi bi-arrow-right-circle-fill"></i></button>
-    </div>
+      <div id="img-thumbnails" class="thumbnails-container"></div>
+      </div>
       </br>
       </br>
       <p><strong>Precio:</strong> ${productData.currency} ${productData.cost}</p>
@@ -77,7 +80,8 @@ function ImageCarousel(images) {
   const imgContainer = document.getElementById("img");
   const anteriorBtn = document.getElementById("anterior");
   const siguienteBtn = document.getElementById("siguiente");
-
+  const imgThumbnailsContainer = document.getElementById("img-thumbnails");
+  
   // Configura variables de control
   let currentIndex = 0;
 
@@ -111,11 +115,15 @@ function ImageCarousel(images) {
   // Mostrar la primera imagen
   actualizarCarrusel();
 
-// Obtén la referencia a la imagen
-const imgElement = document.querySelector("#img img");
-
-}
-
+  // Agrega las miniaturas de las imágenes
+  imgThumbnailsContainer.innerHTML = images
+    .map((image, index) => {
+      const thumbnailClass = index === currentIndex ? "thumbnail active" : "thumbnail"; 
+      return `<img src="${image}" class="${thumbnailClass}">`;
+    })
+    .join("");
+    
+};
 
 
 /*-----------------------------------*\
