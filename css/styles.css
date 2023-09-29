@@ -175,6 +175,7 @@ footer p {
   display: none;
 }
 
+
 main {
   min-height: calc(100vh - 210px);
   margin-top: 30px; 
@@ -378,7 +379,6 @@ a.custom-card:hover {
   transform: translate(450%, 0%); /* Centra la imagen horizontalmente y verticalmente */
   
 }
-
 
 
 
