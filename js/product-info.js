@@ -305,3 +305,17 @@ toggleThemeButton.addEventListener('click', function () {
       body.classList.add('dark-theme');
     }
   });
+
+  // Función para cerrar sesión y borrar el usuario
+function cerrarSesion() {
+  // Borrar el nombre de usuario y la contraseña almacenado en el almacenamiento local
+localStorage.removeItem("savedUsername");
+localStorage.removeItem("savedPassword");
+  
+
+  // Redirigir a la página de inicio de sesión 
+  window.location.href = "login.html"; 
+}
+
+// Agregar evento al enlace de Cerrar Sesión
+document.getElementById("logout").addEventListener("click", cerrarSesion)
