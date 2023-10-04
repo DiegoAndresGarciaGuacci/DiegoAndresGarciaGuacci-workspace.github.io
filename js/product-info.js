@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
         displayProductDetails(productData);
         // Crear el carrusel con las imágenes del producto
         ImageCarousel(productData.images);
+
+        document.getElementById("btn-cart").addEventListener( "click",  infoCart(productData) );
+  
       })
       .catch(error => {
         console.error("Error al cargar los datos del producto", error);
@@ -20,6 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("product-details-container").innerHTML = "<p>No se ha seleccionado ningún producto.</p>";
   }
 });
+
+
 
 function displayProductDetails(productData) {
   // Crear el contenido HTML para mostrar los detalles del producto
@@ -68,10 +73,22 @@ function displayProductDetails(productData) {
 function setRelatedProductsId(id){
   localStorage.setItem("prodId", id);
   window.location.href = "product-info.html";
-
-
 }
 
+function infoCart(data) {
+  array = localStorage.getItem("cart")
+  arrayParse = JSON.parse(array)
+
+  let info = {  "id": "",
+  "name": data.name,
+  "count": "",
+  "unitCost": data.cost,
+  "currency": data.currency,
+  "image": data.images[0]}
+  
+  arrayParse.push(info)
+  localStorage.setItem("cart", JSON.stringify(arrayParse));
+}
 
 function ImageCarousel(images) {
   
