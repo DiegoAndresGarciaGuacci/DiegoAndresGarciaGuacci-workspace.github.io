@@ -71,3 +71,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }, false)
   })
 })()
+
+//PARA MOSTRAR EN EL CARRITO
+
+let infoArray = []
+localStorage.setItem("cart", JSON.stringify(infoArray));
+const cart = `https://japceibal.github.io/emercado-api/user_cart/25801.json`;
+
+fetch(cart)
+.then(response => response.json())
+.then(productData => {
+  const article = productData.articles[0]
+  infoCart(article);
+})
+.catch(error => {
+  console.error("Error al cargar los datos del producto", error);
+});
+
+function infoCart(data) {
+  array = localStorage.getItem("cart")
+  arrayParse = JSON.parse(array)
+
+  arrayParse.push(data)
+  localStorage.setItem("cart", JSON.stringify(arrayParse));
+}
