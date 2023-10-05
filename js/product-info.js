@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Crear el carrusel con las imágenes del producto
         ImageCarousel(productData.images);
 
-        document.getElementById("btn-cart").addEventListener( "click",  infoCart(productData) );
+        document.getElementById("btn-cart").addEventListener("click", function(){
+          infoCart(productData)}
+          );
   
       })
       .catch(error => {
@@ -79,16 +81,22 @@ function infoCart(data) {
   array = localStorage.getItem("cart")
   arrayParse = JSON.parse(array)
 
-  let info = {  "id": "",
+  let info = {  "id": data.id,
   "name": data.name,
   "count": "",
   "unitCost": data.cost,
   "currency": data.currency,
   "image": data.images[0]}
-  
-  arrayParse.push(info)
-  localStorage.setItem("cart", JSON.stringify(arrayParse));
+
+  if (!arrayParse.find(item => item.id === data.id)) {
+    arrayParse.push(info);
+    localStorage.setItem("cart", JSON.stringify(arrayParse));
+    alert("Producto agregado al carrito");
+  } else {
+    alert("Este producto ya está en el carrito");
+  }
 }
+
 
 function ImageCarousel(images) {
   
@@ -220,10 +228,6 @@ function createStarRating(score) {
 }
 
 
-
-
-
-
 /*-----------------------------------*\
  * #FUNCION PARA ENVIAR COMENTARIOS
 \*-----------------------------------*/
@@ -269,10 +273,6 @@ if (!comment) {
   commentForm.reset();
 });
 
-/*-----------------------------------*\
- * #Funcion para que aparezca el usuario logeado 
-\*-----------------------------------*/
-const savedUsername = localStorage.getItem("savedUsername");
 
 /*-----------------------------------*\
  * #Obtener la fecha y hora actual
@@ -283,56 +283,4 @@ const currentDate = new Date();
 const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
 const formattedTime = `${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`;
 
-// Mostrar usuario en navbar
-const userInfoElement = document.getElementById("user-info");
-userInfoElement.textContent = ` ${savedUsername}`;
 
- /*-----------------------------------*\
- * #Obtener el botón de cambio de tema
-\*-----------------------------------*/
-var toggleThemeButton = document.getElementById('toggle-theme');
-
-toggleThemeButton.addEventListener('click', function () {
-  // Se obtiene el elemento <body>
-  var body = document.body;
-
-  // Se alterna entre las clases 'dark' y 'light' en el <body>
-  if (body.classList.contains('dark-theme')) {
-    body.classList.remove('dark-theme');
-    body.classList.add('light-theme');
-    localStorage.setItem('theme', 'light'); // guardo el modo en el localstorage para usarlo en las demas ventanas
-  } else {
-    body.classList.remove('light-theme');
-    body.classList.add('dark-theme');
-    localStorage.setItem('theme', 'dark');
-  }
-});
-
-  document.addEventListener('DOMContentLoaded', function () {
-    // Verifico si hay un modo guardado en localstorage
-    var savedTheme = localStorage.getItem('theme');
-    var body = document.body;
-  
-    // Aplica el modo almacenado
-    if (savedTheme === 'light') {
-      body.classList.remove('dark-theme');
-      body.classList.add('light-theme');
-    } else if (savedTheme === 'dark') {
-      body.classList.remove('light-theme');
-      body.classList.add('dark-theme');
-    }
-  });
-
-  // Función para cerrar sesión y borrar el usuario
-function cerrarSesion() {
-  // Borrar el nombre de usuario y la contraseña almacenado en el almacenamiento local
-localStorage.removeItem("savedUsername");
-localStorage.removeItem("savedPassword");
-  
-
-  // Redirigir a la página de inicio de sesión 
-  window.location.href = "login.html"; 
-}
-
-// Agregar evento al enlace de Cerrar Sesión
-document.getElementById("logout").addEventListener("click", cerrarSesion)
