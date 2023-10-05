@@ -79,7 +79,7 @@ function infoCart(data) {
   array = localStorage.getItem("cart")
   arrayParse = JSON.parse(array)
 
-  let info = {  "id": "",
+  let info = {  "id": data.id,
   "name": data.name,
   "count": "",
   "unitCost": data.cost,

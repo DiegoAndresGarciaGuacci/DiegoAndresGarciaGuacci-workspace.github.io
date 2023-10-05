@@ -78,7 +78,7 @@ function displayProducts(data) {
           <h6 id="subtotal-${productIndex}" class="mb-0">${product.unitCost} ${product.currency}</h6>
         </div>
         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-          <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+          <a href="#!" class="text-muted" onclick="removeItem(${productIndex})"><i class="fas fa-times"></i></a>
         </div>
       </div>
     `;
@@ -97,6 +97,15 @@ function incrementQuantity(productIndex) {
   quantityInput.stepUp();
   // Actualizar el subtotal después de incrementar la cantidad
   updateSubtotal(productIndex);
+}
+
+function removeItem(i) {
+  // Elimina el producto del array data
+  let data = JSON.parse(localStorage.getItem("cart"));
+  data.splice(i, 1);
+  localStorage.setItem("cart", JSON.stringify(data));
+
+  displayProducts(data);
 }
 
 // Función para decrementar la cantidad de un producto
