@@ -86,7 +86,7 @@ function infoCart(data) {
   "count": "",
   "unitCost": data.cost,
   "currency": data.currency,
-  "image": data.images[0]}
+  "image": data.images[0] }
 
   if (!arrayParse.find(item => item.id === data.id)) {
     arrayParse.push(info);
@@ -96,7 +96,6 @@ function infoCart(data) {
     alert("Este producto ya está en el carrito");
   }
 }
-
 
 function ImageCarousel(images) {
   
