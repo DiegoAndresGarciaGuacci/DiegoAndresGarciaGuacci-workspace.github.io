@@ -332,14 +332,14 @@ a.custom-card:hover {
 
 #anterior {
   position: absolute;
-  left: 350px; /* Ajusta la posición a la izquierda */
+  left: 100px; /* Ajusta la posición a la izquierda */
   top: 60%;
 }
 
 /* Estilo para el botón siguiente */
 #siguiente {
   position: absolute;
-  right: 350px; /* Ajusta la posición a la derecha */
+  right: 100px; /* Ajusta la posición a la derecha */
   top: 60%;
 }
 
