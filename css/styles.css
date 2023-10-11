@@ -47,6 +47,7 @@ nav a {
   .jumbotron {
     height: auto; /* Cambia la altura a "auto" para el contenido */
     color: white; /* Cambia el color del texto para que sea legible en fondos oscuros */
+    padding: 2em; /* Reduce el padding para dispositivos móviles */
     background: url('../img/46.png');
     background-size: cover;
     background-position: center;
