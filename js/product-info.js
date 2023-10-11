@@ -30,13 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function displayProductDetails(productData) {
   // Crear el contenido HTML para mostrar los detalles del producto
+
   const productHTML = `
     <h1 class="productTitulo">${productData.name}</h1>
     </br>
     <div class="productInfo">
       <h3><strong>Imagenes ilustrativas:</strong></h3>
       </br>
-      
       <div id="img" class="img"></div>
       
       <div class="controles">
@@ -46,6 +46,7 @@ function displayProductDetails(productData) {
       </div>
       </br>
       </br>
+      
       <p><strong>Precio:</strong> ${productData.currency} ${productData.cost}</p>
       <p><strong>Descripción:</strong> ${productData.description}</p>
       <p><strong>Cantidad Vendidos:</strong> ${productData.soldCount}</p>
@@ -55,6 +56,7 @@ function displayProductDetails(productData) {
       </div>
       <p><strong>Comentarios:</strong></p>
       </div>
+      
 
   `;
   document.getElementById("product-details-container").innerHTML = productHTML;
