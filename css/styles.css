@@ -39,7 +39,18 @@ nav a {
   background-repeat: no-repeat;
   color: black;
   font-weight: bold;
+
+
 }
+
+@media (max-width: 767px) {
+  .jumbotron {
+    height: auto; /* Cambia la altura a "auto" para el contenido */
+    padding: 2em; /* Reduce el padding para dispositivos móviles */
+    text-align: center; /* Centra el texto */
+    background: none; /* Elimina el fondo de imagen en dispositivos móviles */
+    color: white; /* Cambia el color del texto para que sea legible en fondos oscuros */
+  }}
 
 @media (min-width: 768px) {
   .jumbotron {
