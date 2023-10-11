@@ -392,19 +392,19 @@ a.custom-card:hover {
   transform: translate(450%, 0%); /* Centra la imagen horizontalmente y verticalmente */
   
 }
-#comprar{
+#btn-cart{
   display: flex;
   cursor: pointer;
   background-color: #628f5b; /* Color de fondo del botón del carrito */
   color: #0a0a0a; /* Color del texto del botón del carrito */
-  position: fixed; /* Establece la posición fija */
+
   right: 20px; /* Ajusta la distancia desde el borde derecho */
   border: none; /* Sin borde */
   border-radius: 5px;
   padding: 10px 20px; /* Espaciado interno */
 }
 
-#comprar:hover {
+#btn-cart:hover {
   background-color: #0f75016b; /* Cambia el color de fondo al pasar el mouse */
 }
 
