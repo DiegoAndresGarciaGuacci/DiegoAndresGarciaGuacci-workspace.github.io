@@ -383,6 +383,7 @@ a.custom-card:hover {
 
 .bg-grey {
   background-color: #f8f411a1; /* Cambia el color del fondo */
+  
   }
 
   .form-control-lg{
@@ -415,6 +416,9 @@ a.custom-card:hover {
     color: rgba(255, 255, 255, 0.788);
   }
   
+  .container {
+    color: black;
+  }
   
   
 
