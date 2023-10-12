@@ -293,7 +293,6 @@ a.custom-card:hover {
   cursor: pointer;
   font-size: 10px;
   
- 
 }
 
 /* Estilo para el modo oscuro */
@@ -411,6 +410,49 @@ a.custom-card:hover {
   width: 80%;
   max-height: 80%;
 }
+
+/* Estilo carrito */
+
+.bg-grey {
+  background-color: #f8f411a1; /* Cambia el color del fondo */
+  
+  }
+
+  .form-control-lg{
+    border: 1px solid #000000; 
+    border-radius: 5px; 
+    width: 280px;
+  }
+  
+.form-control-lg::placeholder { 
+    
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    font-size: 0.9rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+  }
+
+  .select{
+    border: 1px solid #000000; /* Cambia el color y el grosor del borde */
+    padding: 5px; 
+    border-radius: 5px;  /* Agrega esquinas redondeadas  */
+    font-size: 1rem;
+    width: 280px;
+    
+  }
+  
+  button.btn-dark:hover{
+    background-color: #3f3f3ffd;
+    color: rgba(255, 255, 255, 0.788);
+  }
+  
+  .container {
+    color: black;
+  }
+  
+  
 
 
 
