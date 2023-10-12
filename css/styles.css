@@ -30,13 +30,13 @@ nav a {
 
 .jumbotron {
   height: 60vh;
-  padding: 5em inherit;
+  padding: 5em;
   margin-bottom: 0;
   background-color: #53C0FB;
   background: url('../img/46.png');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+ ;
   color: black;
   font-weight: bold;
 
@@ -50,7 +50,7 @@ nav a {
     background: url('../img/46.png');
     background-size: cover;
     background-position: center;
-  background-repeat: no-repeat;
+ ;
   }}
 
 @media (min-width: 768px) {
