@@ -54,7 +54,7 @@ function displayProductDetails(productData) {
       <p><strong>Productos relacionados:</strong></p>
       <div id="related">
       </div>
-      <p><strong>Comentarios:</strong></p>
+      
       </div>
       
 
