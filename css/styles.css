@@ -326,14 +326,17 @@ a.custom-card:hover {
   color: #03030396; /* Color de los iconos (puedes cambiarlo) */
 
 }
-
+.controles{
+  width: 80%;
+  max-height: 100%;
+}
 
 /* Estilo para el botón anterior */
 #anterior {
   position: absolute;
   left: 100; /* Coloca el botón al borde izquierdo de la imagen */
   top: 50%; /* Centra verticalmente respecto a la imagen */
-  transform: translateY(500%); /* Ajusta verticalmente */
+ /* transform: translateY(500%); /* Ajusta verticalmente */
   cursor: pointer;
 }
 
@@ -342,7 +345,7 @@ a.custom-card:hover {
   position: absolute;
   right: 0; /* Coloca el botón al borde derecho de la imagen */
   top: 50%; /* Centra verticalmente respecto a la imagen */
-  transform: translateY(500%); /* Ajusta verticalmente */
+  /*transform: translateY(500%);  Ajusta verticalmente */
   cursor: pointer;
 }
 
@@ -387,7 +390,7 @@ a.custom-card:hover {
   margin-right: 10px;
   opacity: 0.15;
   cursor: pointer;
-  position: center; /* Esto no es una propiedad válida de CSS, debería ser "text-align: center;" para centrar horizontalmente */
+  text-align: center; /* Esto no es una propiedad válida de CSS, debería ser "text-align: center;" para centrar horizontalmente */
 }
 
 #btn-cart{
@@ -408,13 +411,13 @@ a.custom-card:hover {
 
 .row-modificar{
   width: 80%;
-  max-height: 80%;
+  max-height: 100%;
 }
 
 /* Estilo carrito */
 
 .bg-grey {
-  background-color: #f8f411a1; /* Cambia el color del fondo */
+  background-color: #545454a1; /* Cambia el color del fondo */
   
   }
 
