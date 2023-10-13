@@ -53,9 +53,7 @@ function displayProductDetails(productData) {
       <p><strong>Categoria:</strong> ${productData.category}</p>
       <p><strong>Productos relacionados:</strong></p>
       <div id="related">
-      </div>
       
-      </div>
       
 
   `;
