@@ -190,6 +190,48 @@ radioTransferencia.addEventListener('change', function () {
     mensajePago.textContent = '';
   }
 });
+
+
+
+  const calleInput = document.getElementById('form3Examplea2');
+  const numeroInput = document.getElementById('form3Examplea3');
+  const esquinaInput = document.getElementById('form3Examplea4');
+
+  calleInput.addEventListener('blur', validateCalle);
+  numeroInput.addEventListener('blur', validateNumero);
+  esquinaInput.addEventListener('blur', validateEsquina);
+
+  function validateCalle() {
+    if (calleInput.value.trim() !== '') {
+      calleInput.classList.remove('is-invalid');
+      calleInput.classList.add('is-valid');
+    } else {
+      calleInput.classList.remove('is-valid');
+      calleInput.classList.add('is-invalid');
+    }
+  }
+
+  function validateNumero() {
+    if (numeroInput.value.trim() !== '') {
+      numeroInput.classList.remove('is-invalid');
+      numeroInput.classList.add('is-valid');
+    } else {
+      numeroInput.classList.remove('is-valid');
+      numeroInput.classList.add('is-invalid');
+    }
+  }
+
+  function validateEsquina() {
+    if (esquinaInput.value.trim() !== '') {
+      esquinaInput.classList.remove('is-invalid');
+      esquinaInput.classList.add('is-valid');
+    } else {
+      esquinaInput.classList.remove('is-valid');
+      esquinaInput.classList.add('is-invalid');
+    }
+  }
+
+
  
 
 
