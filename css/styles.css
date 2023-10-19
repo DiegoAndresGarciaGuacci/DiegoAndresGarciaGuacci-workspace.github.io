@@ -495,3 +495,6 @@ input[type="radio"] {
   margin-top: 20%;
 }
 
+#mensajePago{
+  color: red;
+}

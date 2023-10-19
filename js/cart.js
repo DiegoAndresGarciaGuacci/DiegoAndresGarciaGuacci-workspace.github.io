@@ -175,7 +175,8 @@ radioTransferencia.addEventListener('change', function () {
 
 radioTarjeta.addEventListener('change', function () {
   if (radioTarjeta.checked) {
-    mensajePago.textContent = 'Has seleccionado Tarjeta de Crédito.';
+    mensajePago.textContent = 'Has seleccionado Tarjeta de Crédito.'; 
+    mensajePago.style.color = 'black'
   } else {
     mensajePago.textContent = '';
   }
@@ -184,6 +185,7 @@ radioTarjeta.addEventListener('change', function () {
 radioTransferencia.addEventListener('change', function () {
   if (radioTransferencia.checked) {
     mensajePago.textContent = 'Has seleccionado Transferencia Bancaria.';
+    mensajePago.style.color = 'black'
   } else {
     mensajePago.textContent = '';
   }
