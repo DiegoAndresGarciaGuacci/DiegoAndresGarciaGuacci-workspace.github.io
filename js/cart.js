@@ -22,21 +22,65 @@ function updateSubtotal(productIndex) {
   updateSummary();
 }
 
+// calculo del porcentaje segun el envio
+function costoEnvio(subtt, metodoEnvio) {
+  let subtotal = subtt;
+  let shippingCost = 0;
+
+  if (metodoEnvio === "premium") {
+    shippingCost = subtotal * 0.15;
+  } else if (metodoEnvio === "express") {
+    shippingCost = subtotal * 0.07;
+  } else if (metodoEnvio === "standard") {
+    shippingCost = subtotal * 0.05;
+  }
+
+  document.getElementById("envio").textContent = `${shippingCost.toFixed(2)} USD`;
+  return shippingCost;
+}
+
 // Función para actualizar el resumen total de la compra
 function updateSummary() {
   // Obtener todos los elementos de subtotal
   const subtotalElements = document.querySelectorAll('[id^="subtotal-"]');
-  let total = 0;
+  let subtotal = 0;
 
   // Calcular el total sumando todos los subtotales
   subtotalElements.forEach((subtotalElement) => {
-    total += parseFloat(subtotalElement.textContent);
+    subtotal += parseFloat(subtotalElement.textContent);
   });
 
-  // Actualizar el total en el resumen de compra
-  const totalElement = document.getElementById("total-price");
-  totalElement.textContent = `$ ${total.toFixed(2)}`;
+  // Actualizar el subtotal
+  const subtotalElement = document.getElementById("subtt-price");
+  subtotalElement.textContent = `${subtotal.toFixed(2)} USD`;
+
+  //Obtener el metodo de envio seleccionado
+  const envioSelect = document.getElementById("metEnvio");
+  const selectedOption = envioSelect.options[envioSelect.selectedIndex];
+  const metodoEnvio = selectedOption.value;
+
+  //Calcular envio con el subtotal y el metodo actual
+  const shippingCost = costoEnvio(subtotal, metodoEnvio);
+
+  // Total
+  const totalPrice = subtotal + shippingCost;
+  const totalPriceElement = document.getElementById("total-price");
+  totalPriceElement.textContent = `${totalPrice.toFixed(2)} USD`;
 }
+
+// Evento para el cambio de envio
+const envioSelect = document.getElementById("metEnvio");
+envioSelect.addEventListener("change", updateSummary);
+
+// Evento para cambio del subtotal
+const subtotalElements = document.querySelectorAll('[id^="subtotal-"]');
+subtotalElements.forEach((subtotalElement) => {
+  subtotalElement.addEventListener("change", updateSummary);
+});
+
+// llamado inicial
+updateSummary();
+
 
 // Función para mostrar los productos en el carrito
 function displayProducts(data) {

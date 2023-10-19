@@ -134,10 +134,10 @@
                     <hr class="my-4">
                     <h5 class="text-uppercase mb-3">Tipo de envio</h5>
                     <div class="mb-4 pb-2">
-                      <select class="select">
-                        <option value="1">Premium 2 a 5 días(15%)</option>
-                        <option value="2">Express 5 a 8 días(7%)</option>
-                        <option value="3">Standard 12 a 15 días(5%)</option>
+                      <select class="select" id="metEnvio">
+                        <option value="premium">Premium 2 a 5 días(15%)</option>
+                        <option value="express">Express 5 a 8 días(7%)</option>
+                        <option value="standard">Standard 12 a 15 días(5%)</option>
                       </select>
                     </div>
                     <h5 class="text-uppercase mb-3">Dirección de envio</h5>
@@ -156,8 +156,16 @@
 
                     <hr class="my-4">
                       <div class="d-flex justify-content-between mb-5">
+                      <h5>Subtotal</h5>
+                      <h5 id="subtt-price">0.00 USD</h5> <!--Cambio de ID-->
+                     </div>
+                     <div class="d-flex justify-content-between mb-5">
+                      <h5>Costo de envio</h5>
+                      <h5 id="envio">0.00 USD</h5> <!--Cambio de ID-->
+                     </div>
+                      <div class="d-flex justify-content-between mb-5">
                         <h5 class="text-uppercase">Total</h5>
-                        <h5 id="total-price">$ 0.00</h5> <!--Cambio de ID-->
+                        <h5 id="total-price">0.00 USD</h5> <!--Cambio de ID-->
                       </div>
                       
                       <button type="button" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Comprar</button>
