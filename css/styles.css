@@ -459,3 +459,34 @@ a.custom-card:hover {
 
 
 
+/* Agrega tus estilos personalizados aquí */
+
+.modal-body {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Estilos para los radio buttons */
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+/* Estilo para el botón "Confirmar" */
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}

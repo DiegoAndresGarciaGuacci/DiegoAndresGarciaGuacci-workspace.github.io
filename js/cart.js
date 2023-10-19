@@ -98,6 +98,38 @@ function displayProducts(data) {
   updateSummary();
 }
 
+
+// Obtén referencias a los elementos del DOM
+const radioTarjeta = document.getElementById('radioTarjeta');
+const radioTransferencia = document.getElementById('radioTransferencia');
+const numeroTarjeta = document.getElementById('numeroTarjeta');
+const codigoSeguridad = document.getElementById('codigoSeguridad');
+const vencimiento = document.getElementById('vencimiento');
+const numeroCuenta = document.getElementById('numeroCuenta');
+
+// Agrega eventos de cambio a los radio buttons
+radioTarjeta.addEventListener('change', function () {
+  if (radioTarjeta.checked) {
+    numeroTarjeta.disabled = false;
+    codigoSeguridad.disabled = false;
+    vencimiento.disabled = false;
+    numeroCuenta.disabled = true;
+  }
+});
+
+radioTransferencia.addEventListener('change', function () {
+  if (radioTransferencia.checked) {
+    numeroTarjeta.disabled = true;
+    codigoSeguridad.disabled = true;
+    vencimiento.disabled = true;
+    numeroCuenta.disabled = false;
+  }
+});
+
+
+
+
+
 // Función para incrementar la cantidad de un producto
 function incrementQuantity(productIndex) {
   const quantityInput = document.getElementById(`quantity-${productIndex}`);
