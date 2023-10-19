@@ -150,6 +150,8 @@ const numeroTarjeta = document.getElementById('numeroTarjeta');
 const codigoSeguridad = document.getElementById('codigoSeguridad');
 const vencimiento = document.getElementById('vencimiento');
 const numeroCuenta = document.getElementById('numeroCuenta');
+const mensajePago = document.getElementById('mensajePago');
+
 
 // Agrega eventos de cambio a los radio buttons
 radioTarjeta.addEventListener('change', function () {
@@ -171,6 +173,22 @@ radioTransferencia.addEventListener('change', function () {
 });
 
 
+radioTarjeta.addEventListener('change', function () {
+  if (radioTarjeta.checked) {
+    mensajePago.textContent = 'Has seleccionado Tarjeta de Crédito.';
+  } else {
+    mensajePago.textContent = '';
+  }
+});
+
+radioTransferencia.addEventListener('change', function () {
+  if (radioTransferencia.checked) {
+    mensajePago.textContent = 'Has seleccionado Transferencia Bancaria.';
+  } else {
+    mensajePago.textContent = '';
+  }
+});
+ 
 
 
 
@@ -201,4 +219,3 @@ function decrementQuantity(productIndex) {
 
 // Mostrar los productos del carrito al cargar la página
 displayProducts(localParse);
-
