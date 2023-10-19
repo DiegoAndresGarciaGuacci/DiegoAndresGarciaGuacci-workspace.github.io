@@ -498,3 +498,9 @@ input[type="radio"] {
 #mensajePago{
   color: red;
 }
+
+.iconborrar{
+  color: red;
+  width: 20px; /* Ajusta el ancho según tu preferencia */
+  height: 20px; /*
+}
