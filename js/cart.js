@@ -312,7 +312,10 @@ document.getElementById("finalizarcompra").addEventListener("click", function ()
     successAlert.textContent = '¡Has comprado con éxito!';
     document.body.appendChild(successAlert);
   } else {
-    alert('¡Debe completar los campos requeridos!');
+    var notSuccessAlert = document.createElement('div');
+    notSuccessAlert.className = 'alert alert-danger';
+    notSuccessAlert.textContent = '¡Debes rellenar todos los campos!';
+    document.body.appendChild(notSuccessAlert);
   }
 
 });
