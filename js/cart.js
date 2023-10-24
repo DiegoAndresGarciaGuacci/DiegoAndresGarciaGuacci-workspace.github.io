@@ -114,7 +114,7 @@ function displayProducts(data) {
             <i class="fas fa-minus"></i>
           </button>
 
-          <input id="quantity-${productIndex}" id="productCountInput" min="0" name="quantity" value="1" type="number"
+          <input id="quantity-${productIndex}" id="productCountInput" min="1" name="quantity" value="1" type="number"
             class="form-control form-control-sm" onchange="updateSubtotal(${productIndex})" />
 
           <button class="btn btn-link px-2"
