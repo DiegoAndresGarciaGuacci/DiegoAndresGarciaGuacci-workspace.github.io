@@ -43,16 +43,24 @@ function costoEnvio(subtt, metodoEnvio) {
 function updateSummary() {
   // Obtener todos los elementos de subtotal
   const subtotalElements = document.querySelectorAll('[id^="subtotal-"]');
-  let subtotal = 0;
+  let uyuSubtotal = 0; // contador para los precios en uyu
+  let usdSubtotal = 0; // contador para los precios en usd
 
-  // Calcular el total sumando todos los subtotales
-  subtotalElements.forEach((subtotalElement) => {
-    subtotal += parseFloat(subtotalElement.textContent);
+  subtotalElements.forEach((element) => {  // recorre el array creado por el querySelectorAll
+    const subtotal = parseFloat(element.textContent); // acceder al texto de cada elemento
+    if (element.textContent.includes("UYU")) {  // si el texto incluye UYU se agrega al contador uyuSubtotal
+      uyuSubtotal += subtotal;
+    } else if (element.textContent.includes("USD")) { // si el texto incluye USD se agrega al contador usdSubtotal
+      usdSubtotal += subtotal;
+    }
   });
 
+  // calcular el subtotal en USD
+  const totalSubtotal = (uyuSubtotal / 40) + usdSubtotal; // los precios en uyu se dividen por 40 (con una aproximacion a la conversion)
+    
   // Actualizar el subtotal
   const subtotalElement = document.getElementById("subtt-price");
-  subtotalElement.textContent = `${subtotal.toFixed(2)} USD`;
+  subtotalElement.textContent = `${totalSubtotal.toFixed(2)} USD`;
 
   //Obtener el metodo de envio seleccionado
   const envioSelect = document.getElementById("metEnvio");
@@ -60,10 +68,10 @@ function updateSummary() {
   const metodoEnvio = selectedOption.value;
 
   //Calcular envio con el subtotal y el metodo actual
-  const shippingCost = costoEnvio(subtotal, metodoEnvio);
+  const shippingCost = costoEnvio(totalSubtotal, metodoEnvio);
 
   // Total
-  const totalPrice = subtotal + shippingCost;
+  const totalPrice = totalSubtotal + shippingCost;
   const totalPriceElement = document.getElementById("total-price");
   totalPriceElement.textContent = `${totalPrice.toFixed(2)} USD`;
 }
