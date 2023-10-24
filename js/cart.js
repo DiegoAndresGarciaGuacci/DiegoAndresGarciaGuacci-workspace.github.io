@@ -114,10 +114,11 @@ function displayProducts(data) {
             <i class="fas fa-minus"></i>
           </button>
 
-          <input id="quantity-${productIndex}" min="0" name="quantity" value="1" type="number"
+          <input id="quantity-${productIndex}" id="productCountInput" min="0" name="quantity" value="1" type="number"
             class="form-control form-control-sm" onchange="updateSubtotal(${productIndex})" />
 
           <button class="btn btn-link px-2"
+          
             onclick="incrementQuantity(${productIndex})">
             <i class="fas fa-plus"></i>
           </button>
@@ -126,7 +127,9 @@ function displayProducts(data) {
           <h6 id="subtotal-${productIndex}" class="mb-0">${product.unitCost} ${product.currency}</h6>
         </div>
         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-          <a href="#!" class="text-muted" onclick="removeItem(${productIndex})"><i class="fas fa-times"></i></a>
+          <a href="#!" class="text-muted"  onclick="removeItem(${productIndex})"><svg class= "iconborrar" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+          <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a.2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+      </svg></a>
         </div>
       </div>
     `;
@@ -263,3 +266,53 @@ function decrementQuantity(productIndex) {
 
 // Mostrar los productos del carrito al cargar la página
 displayProducts(localParse);
+
+
+document.getElementById("finalizarcompra").addEventListener("click", function () {
+  // Validar campos de dirección (calle, número y esquina)
+  const calleInput = document.getElementById('form3Examplea2');
+  const numeroInput = document.getElementById('form3Examplea3');
+  const esquinaInput = document.getElementById('form3Examplea4');
+
+  const isCalleValid = calleInput.value.trim() !== '';
+  const isNumeroValid = numeroInput.value.trim() !== '';
+  const isEsquinaValid = esquinaInput.value.trim() !== '';
+
+  if (!isCalleValid) {
+    calleInput.classList.add('is-invalid');
+  }
+
+  if (!isNumeroValid) {
+    numeroInput.classList.add('is-invalid');
+  }
+
+  if (!isEsquinaValid) {
+    esquinaInput.classList.add('is-invalid');
+  }
+
+  // Validar forma de pago (tarjeta o transferencia)
+  const radioTarjeta = document.getElementById('radioTarjeta');
+  const radioTransferencia = document.getElementById('radioTransferencia');
+  
+  const isTarjetaChecked = radioTarjeta.checked;
+  const isTransferenciaChecked = radioTransferencia.checked;
+
+  if (!isTarjetaChecked && !isTransferenciaChecked) {
+    mensajePago.textContent = 'Debes seleccionar una forma de pago.';
+    mensajePago.style.color = 'red';
+  } else {
+    mensajePago.textContent = '';
+  }
+
+  // Si todos los campos son válidos, puedes proceder con la compra
+  if (isCalleValid && isNumeroValid && isEsquinaValid && (isTarjetaChecked || isTransferenciaChecked)) {
+    // Realizar la compra
+    var successAlert = document.createElement('div');
+    successAlert.className = 'alert alert-success';
+    successAlert.textContent = '¡Has comprado con éxito!';
+    document.body.appendChild(successAlert);
+  } else {
+    alert('¡Debe completar los campos requeridos!');
+  }
+
+});
