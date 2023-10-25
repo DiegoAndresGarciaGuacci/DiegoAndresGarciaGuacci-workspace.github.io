@@ -162,7 +162,19 @@ const codigoSeguridad = document.getElementById('codigoSeguridad');
 const vencimiento = document.getElementById('vencimiento');
 const numeroCuenta = document.getElementById('numeroCuenta');
 const mensajePago = document.getElementById('mensajePago');
+const cerrarBtn = document.getElementById("cerrarBtn");
 
+
+numeroTarjeta.addEventListener("input", toggleCerrarBtn);
+  codigoSeguridad.addEventListener("input", toggleCerrarBtn);
+  vencimiento.addEventListener("input", toggleCerrarBtn);
+  numeroCuenta.addEventListener("input", toggleCerrarBtn);
+
+  function toggleCerrarBtn() {
+    const tarjetaCompleta = numeroTarjeta.value.trim() !== "" && codigoSeguridad.value.trim() !== "" && vencimiento.value.trim() !== "";
+    const transferenciaCompleta = numeroCuenta.value.trim() !== "";
+    cerrarBtn.disabled = !(tarjetaCompleta || transferenciaCompleta);
+  }
 
 // Agrega eventos de cambio a los radio buttons
 radioTarjeta.addEventListener('change', function () {
@@ -201,6 +213,7 @@ radioTransferencia.addEventListener('change', function () {
     mensajePago.textContent = '';
   }
 });
+
 
 
 
