@@ -68,7 +68,7 @@ function updateSummary() {
   const metodoEnvio = selectedOption.value;
 
   //Calcular envio con el subtotal y el metodo actual
-  const shippingCost = costoEnvio(totalSubtotal, metodoEnvio);
+  const shippingCost = costoEnvio(totalSubtotal, metodoEnvio); //cambio de constante
 
   // Total
   const totalPrice = totalSubtotal + shippingCost;
@@ -93,7 +93,6 @@ updateSummary();
 // Función para mostrar los productos en el carrito
 function displayProducts(data) {
   let productInfo = "";
-  let text = ""
 
   for (let i = 0; i < data.length; i++) {
     let product = data[i];
@@ -145,9 +144,17 @@ function displayProducts(data) {
 
   // Agregar la información de los productos al contenedor
   document.getElementById("products-cart").innerHTML = productInfo;
+
   const numPrElement = document.getElementById("numPr");
-  numPrElement.innerHTML = "";
-  numPrElement.appendChild(text);
+  numPrElement.innerHTML = ""; // Clear the content
+
+  if (data.length === 0) {
+    const text = document.createTextNode("0 Productos");
+    numPrElement.appendChild(text);
+  } else {
+    let numPr = data.length.toString() + " Productos";
+    numPrElement.textContent = numPr;
+  }
 
   // Actualizar el resumen de compra una vez que se han cargado los productos
   updateSummary();
