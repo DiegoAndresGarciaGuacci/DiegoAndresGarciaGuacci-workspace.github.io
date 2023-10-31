@@ -78,11 +78,54 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <form class="row g-3">
+      <div class="col-md-6">
+        <label for="validationServer01" class="form-label">Nombre*</label>
+        <input type="text" class="form-control " id="validationServer01" placeholder="Ingresa tu primer nombre" required>
+        <div class="valid-feedback">
+          Datos validos
+        </div>
       </div>
-    </div>
+      <div class="col-md-6">
+        <label for="validationServer02" class="form-label">Segundo nombre</label>
+        <input type="text" class="form-control " id="validationServer02" placeholder="Ingresa tu segundo nombre" >
+        <div class="valid-feedback">
+          Datos validos
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="validationServer03" class="form-label">Primer apellido*</label>
+        <input type="text" class="form-control" id="validationServer03" placeholder="Ingresa tu primer apellido" required>
+        <div class="valid-feedback">
+          Datos validos
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="validationServer04" class="form-label">Segundo apellido</label>
+        <input type="text" class="form-control " id="validationServer04" placeholder="Ingresa tu segundo apellido" >
+        <div class="valid-feedback">
+          Datos validos
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="validationServer05" class="form-label">Email*</label>
+        <input type="email" class="form-control " id="validationServer05" placeholder="Ingresa tu Email" required>
+        <div class="valid-feedback">
+          Datos validos
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="validationServer06" class="form-label">Telefono de contacto*</label>
+        <input type="text" class="form-control " id="validationServer06" placeholder="Ingresa un numero de contacto" required>
+        <div class="valid-feedback">
+          Datos validos
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="guardar" >Guardar cambios</button>
+      </div>
+    </form>
+    
   </main>
   <footer class="text-muted">
     <div class="container">
