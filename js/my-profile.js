@@ -1,7 +1,10 @@
 const nombreInput = document.getElementById('validationServer01');
+const nombreInput2 = document.getElementById('validationServer02');
 const emailInput = document.getElementById('validationServer05');
 const apellidoInput = document.getElementById('validationServer03');
+const apellidoInput2 = document.getElementById('validationServer04');
 const telefonoInput = document.getElementById('validationServer06');
+
 
   nombreInput.addEventListener('blur', validateNombre);
   emailInput.addEventListener('blur', validateEmail);
@@ -75,6 +78,8 @@ const telefonoInput = document.getElementById('validationServer06');
 
       // Agregar el elemento de alerta al documento
       document.body.appendChild(alertElement);
+      infoProfile();
+
   } else {
       // Si no todos los campos están validados, mostrar un mensaje de error en rojo
       const alertElement = document.createElement('div');
@@ -85,42 +90,55 @@ const telefonoInput = document.getElementById('validationServer06');
       document.body.appendChild(alertElement);
   }
 });
-  
 
+//LOCAL STORAGE 
 
-/*-----------------------------------*\
- * #Obtener el botón de cambio de tema
-\*-----------------------------------*/
-var toggleThemeButton = document.getElementById('toggle-theme');
+function infoProfile() {
+  const name = nombreInput.value;
+  const name2 = nombreInput2.value;
+  const surname = apellidoInput.value; 
+  const surname2 = apellidoInput2.value; 
+  const tfl = telefonoInput.value;
 
-toggleThemeButton.addEventListener('click', function () {
-  // Se obtiene el elemento <body>
-  var body = document.body;
+  const perfilArray = JSON.parse(localStorage.getItem("profile")) || [];
 
-  // Se alterna entre las clases 'dark' y 'light' en el <body>
-  if (body.classList.contains('dark-theme')) {
-    body.classList.remove('dark-theme');
-    body.classList.add('light-theme');
-    localStorage.setItem('theme', 'light'); // guardo el modo en el localstorage para usarlo en las demas ventanas
+  if (perfilArray.length > 0) {
+    const existingInfo = perfilArray[0];
+    existingInfo.name = name;
+    existingInfo.name2 = name2;
+    existingInfo.surname = surname;
+    existingInfo.surname2 = surname2;
+    existingInfo.tlf = tfl;
   } else {
-    body.classList.remove('light-theme');
-    body.classList.add('dark-theme');
-    localStorage.setItem('theme', 'dark');
+    perfilArray.push({
+      "name": name,
+      "name2": name2,
+      "surname": surname,
+      "surname2": surname2,
+      "tlf": tfl
+    });
   }
+
+  localStorage.setItem("profile", JSON.stringify(perfilArray));
+}
+
+function showProfile() {
+  const profile = JSON.parse(localStorage.getItem("profile")) || [];
+  if (profile.length > 0) {
+    const info = profile[0];
+    nombreInput.value = info.name || "";
+    nombreInput2.value = info.name2 || "";
+    apellidoInput.value = info.surname || "";
+    apellidoInput2.value = info.surname2 || "";
+    emailInput.value = savedUsername; 
+    telefonoInput.value = info.tlf || "";
+  } else {
+    emailInput.value = savedUsername;
+  }
+}
+
+window.addEventListener("load", () => {
+  showProfile();
 });
 
-  document.addEventListener('DOMContentLoaded', function () {
-    // Verifico si hay un modo guardado en localstorage
-    var savedTheme = localStorage.getItem('theme');
-    var body = document.body;
-  
-    // Aplica el modo almacenado
-    if (savedTheme === 'light') {
-      body.classList.remove('dark-theme');
-      body.classList.add('light-theme');
-    } else if (savedTheme === 'dark') {
-      body.classList.remove('light-theme');
-      body.classList.add('dark-theme');
-    }
-  });
 

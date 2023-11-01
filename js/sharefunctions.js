@@ -8,6 +8,7 @@ function cerrarSesion() {
     // Borrar el nombre de usuario y la contraseña almacenado en el almacenamiento local
     localStorage.removeItem("savedUsername");
     localStorage.removeItem("savedPassword");
+    localStorage.removeItem("profile");
     
 
     // Redirigir a la página de inicio de sesión 
