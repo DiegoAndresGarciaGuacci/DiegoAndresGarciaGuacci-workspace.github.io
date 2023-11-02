@@ -141,10 +141,8 @@ window.addEventListener("load", () => {
   showProfile();
 });
 
-
-// Obtener referencias a elementos del DOM
-const fileInput = document.getElementById('fileInput');      // Input para seleccionar un archivo
-const previewImage = document.getElementById('previewImage');  // Imagen para mostrar la vista previa
+const fileInput = document.getElementById('fileInput');
+const previewImage = document.getElementById('previewImage'); 
 
 // Agregar un evento al input de archivo para detectar cambios
 fileInput.addEventListener('change', function() {
@@ -152,10 +150,8 @@ fileInput.addEventListener('change', function() {
 
     if (file) {
         const reader = new FileReader();  // Crear un objeto FileReader para leer el archivo
-
-        // Cuando se complete la lectura del archivo
         reader.onload = function(e) {
-            // Guardar la imagen en el almacenamiento local (LocalStorage)
+            // Guardar la imagen en el Local Storage
             localStorage.setItem('imagen', e.target.result);
 
             // Mostrar la imagen en la vista previa
@@ -163,15 +159,14 @@ fileInput.addEventListener('change', function() {
             previewImage.style.display = 'block';
         };
 
-        // Leer el archivo como una URL de datos (base64)
         reader.readAsDataURL(file);
     }
 });
 
-// Recuperar la imagen desde LocalStorage cuando la página se carga
-const storedImage = localStorage.getItem('imagen');  // Obtener la imagen almacenada en LocalStorage
+// Recuperar la imagen desde Local Storage cuando la página se carga
+const storedImage = localStorage.getItem('imagen');
 if (storedImage) {
-    // Mostrar la imagen recuperada en la vista previa
+    // Mostrar la imagen en la vista previa
     previewImage.src = storedImage;
     previewImage.style.display = 'block';
 }
