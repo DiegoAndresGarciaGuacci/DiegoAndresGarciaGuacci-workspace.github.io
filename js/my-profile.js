@@ -146,29 +146,74 @@ const previewImage = document.getElementById('previewImage');
 
 // Agregar un evento al input de archivo para detectar cambios
 fileInput.addEventListener('change', function() {
-    const file = fileInput.files[0];  // Obtener el archivo seleccionado por el usuario
+  const file = fileInput.files[0];  // Obtener el archivo seleccionado por el usuario
 
-    if (file) {
-        const reader = new FileReader();  // Crear un objeto FileReader para leer el archivo
-        reader.onload = function(e) {
-            // Guardar la imagen en el Local Storage
-            localStorage.setItem('imagen', e.target.result);
+  if (file) {
+    const reader = new FileReader();  // Crear un objeto FileReader para leer el archivo
 
-            // Mostrar la imagen en la vista previa
-            previewImage.src = e.target.result;
-            previewImage.style.display = 'block';
-        };
+    // Cuando se complete la lectura del archivo
+    reader.onload = function(e) {
+      // Mostrar la imagen en la vista previa
+      previewImage.src = e.target.result;
+      // Guardar la imagen en el almacenamiento local
+      localStorage.setItem("imagen", e.target.result);
+    };
 
-        reader.readAsDataURL(file);
-    }
+    // Leer el archivo como una URL de datos (base64)
+    reader.readAsDataURL(file);
+  } else {
+    // Si no se selecciona un archivo, muestra la imagen de perfil por defecto
+    const defaultImageURL = 'img/img_perfil.png';  // Reemplaza 'default-profile.png' con la ruta de tu imagen por defecto
+    previewImage.src = defaultImageURL;
+    // También debes eliminar la imagen del almacenamiento local
+    localStorage.removeItem("imagen");
+  }
 });
 
-// Recuperar la imagen desde Local Storage cuando la página se carga
-const storedImage = localStorage.getItem('imagen');
-if (storedImage) {
-    // Mostrar la imagen en la vista previa
+// Recuperar la imagen desde LocalStorage cuando la página se carga
+window.addEventListener("load", () => {
+  showProfile();  // Cargar la información del perfil actual (si existe)
+
+  // Verifica si hay una imagen de perfil en el almacenamiento local
+  const storedImage = localStorage.getItem('imagen');
+  if (storedImage) {
     previewImage.src = storedImage;
     previewImage.style.display = 'block';
+  } else {
+    // Si no hay una imagen en LocalStorage, muestra la imagen de perfil por defecto
+    const defaultImageURL = 'img/img_perfil.png';  // Reemplaza 'default-profile.png' con la ruta de tu imagen por defecto
+    previewImage.src = defaultImageURL;
+    previewImage.style.display = 'block';
+  }
+});
+
+
+// Función para borrar la información del perfil del usuario actual
+function clearProfileInfo() {
+  localStorage.removeItem('profile');  // Elimina la información del usuario actual
+  localStorage.removeItem('imagen');   // Elimina la imagen de perfil del usuario actual
 }
 
+// Función para mostrar la imagen de perfil por defecto
+function showDefaultProfileImage() {
+  const defaultImageURL = 'img/img_perfil.png';  // Reemplaza 'default-profile.png' con la ruta de tu imagen por defecto
+  previewImage.src = defaultImageURL;
+}
 
+// Llama a esta función cuando el usuario cierre sesión
+document.getElementById("logout").addEventListener("click", function () {
+  clearProfileInfo();  // Borra la información del usuario actual
+  showDefaultProfileImage();  // Muestra la imagen de perfil por defecto
+  // Otras acciones de cierre de sesión necesarias
+  // ...
+});
+
+// Cuando la página se carga
+window.addEventListener("load", () => {
+  showProfile();  // Cargar la información del perfil actual (si existe)
+  // Verifica si hay información de perfil en el almacenamiento local
+  const profileData = JSON.parse(localStorage.getItem("profile")) || [];
+  if (profileData.length === 0) {
+    showDefaultProfileImage();  // Muestra la imagen de perfil por defecto para el nuevo usuario no registrado
+  }
+});
