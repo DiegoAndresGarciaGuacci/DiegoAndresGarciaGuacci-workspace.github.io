@@ -504,3 +504,15 @@ input[type="radio"] {
   width: 20px; /* Ajusta el ancho según tu preferencia */
   height: 20px; 
 }
+
+#profile{
+  margin: 0 10%;
+}
+
+#previewImage {
+  max-width: 150px; 
+  max-height: 150px; 
+  display: none;
+  margin-bottom: 7px;
+  margin-top: 7px;
+}
