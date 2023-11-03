@@ -217,3 +217,4 @@ window.addEventListener("load", () => {
     showDefaultProfileImage();  // Muestra la imagen de perfil por defecto para el nuevo usuario no registrado
   }
 });
+

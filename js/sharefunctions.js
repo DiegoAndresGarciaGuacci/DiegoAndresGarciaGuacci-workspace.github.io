@@ -1,4 +1,5 @@
 const savedUsername = localStorage.getItem("savedUsername");
+const savedPassword = localStorage.getItem("savedPassword");
 
 const userInfoElement = document.getElementById("user-info");
 userInfoElement.textContent = ` ${savedUsername}`;
@@ -55,3 +56,17 @@ toggleThemeButton.addEventListener('click', function () {
       body.classList.add('dark-theme');
     }
   });
+
+
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!savedUsername) {
+      window.location.href = "login.html"
+    }
+    });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  if (!(savedUsername && savedPassword)) {
+    window.location.href = "login.html";
+  }
+});
