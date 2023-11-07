@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
 }
 
 
-//Validamos los datos
+
 (() => {
   'use strict'
 
