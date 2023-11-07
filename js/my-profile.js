@@ -1,4 +1,4 @@
-const nombreInput = document.getElementById('validationServer01');
+const nombreInput = document.getElementById('validationServer01'); 
 const nombreInput2 = document.getElementById('validationServer02');
 const emailInput = document.getElementById('validationServer05');
 const apellidoInput = document.getElementById('validationServer03');
@@ -11,7 +11,8 @@ const telefonoInput = document.getElementById('validationServer06');
   apellidoInput.addEventListener('blur', validateApellido);
   telefonoInput.addEventListener('blur', validateTelefono);
 
-  function validateNombre() {
+  
+  function validateNombre() { // para validar el campo del modal de primer nombre
     if (nombreInput.value.trim() !== '') {
       nombreInput.classList.remove('is-invalid');
       nombreInput.classList.add('is-valid');
@@ -21,7 +22,8 @@ const telefonoInput = document.getElementById('validationServer06');
     }
   }
   
-  function validateEmail() {
+  
+  function validateEmail() { // para validar el campo del modal email
     if (emailInput.value.trim() !== '') {
       emailInput.classList.remove('is-invalid');
       emailInput.classList.add('is-valid');
@@ -31,9 +33,7 @@ const telefonoInput = document.getElementById('validationServer06');
     }
   }
   
-  
-  
-  function validateApellido() {
+  function validateApellido() {  //para validar el campo del modal apellido
     if (apellidoInput.value.trim() !== '') {
       apellidoInput.classList.remove('is-invalid');
       apellidoInput.classList.add('is-valid');
@@ -43,7 +43,7 @@ const telefonoInput = document.getElementById('validationServer06');
     }
   }
 
-  function validateTelefono() {
+  function validateTelefono() { //para validar el campo del modal telefono
     if (telefonoInput.value.trim() !== '') {
       telefonoInput.classList.remove('is-invalid');
       telefonoInput.classList.add('is-valid');
@@ -121,10 +121,11 @@ function infoProfile() {
 
   localStorage.setItem("profile", JSON.stringify(perfilArray));
 }
-
+//funcion para mostrar info de perfil almacenada en LS
 function showProfile() {
   const profile = JSON.parse(localStorage.getItem("profile")) || [];
   if (profile.length > 0) {
+    //si la info de perfil esta en LS, la muetra en los campos 
     const info = profile[0];
     nombreInput.value = info.name || "";
     nombreInput2.value = info.name2 || "";
@@ -132,7 +133,7 @@ function showProfile() {
     apellidoInput2.value = info.surname2 || "";
     emailInput.value = savedUsername; 
     telefonoInput.value = info.tlf || "";
-  } else {
+  } else { //sino hay info en el LS, se muetra solo el email
     emailInput.value = savedUsername;
   }
 }
