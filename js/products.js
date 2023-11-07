@@ -34,7 +34,7 @@ function showCategoriesList(name, array) { /* funcion para mostrar los items con
     </div>`; //agrega el titulo de la categoria
 
     let htmlContentToAppend = ""
-    
+    //Itera entre los productos y crea elementos html para mostrarlos
     for (let i = 0; i < array.length; i++) {
         let product = array[i]; 
         htmlContentToAppend += `
@@ -55,17 +55,17 @@ function showCategoriesList(name, array) { /* funcion para mostrar los items con
             </div>
         </div>`;
     }
-
+     //inserta el contenido html
     document.getElementById("products-cat").innerHTML = htmlContentToAppend;
     document.getElementById("title").innerHTML = title;
 }
-
+//guarda el id del producto y te manda al html de product info de ese producto
 function setProductId(productId) {
   localStorage.setItem("prodId", productId);
   console.log("ID del producto seleccionado:", productId);
   window.location.href = "product-info.html";
 }
-  
+  //la funcion muestra y ordena los productos
 function sortAndShow (criteria, array, name){
   currentArray = sortCategories(criteria, array)
   showCategoriesList(name, currentArray)
@@ -88,7 +88,7 @@ fetch(CARS_URL)
       });
     }
  
-    document.getElementById("rangeFilterCount").addEventListener("click", function() {
+    document.getElementById("rangeFilterCount").addEventListener("click", function() { //agregamos un event para filtrar y ordenar los productos
       if (rangeFilterCountMin.value.trim() !== '' || rangeFilterCountMax.value.trim() !== '') {
         sortAndShow("rangePrice", productsArray, catName);
       } else {
@@ -97,15 +97,15 @@ fetch(CARS_URL)
     });
 
 
-    document.getElementById("sortAsc").addEventListener("click", function() {
+    document.getElementById("sortAsc").addEventListener("click", function() { //por precio ascendente
       sortAndShow("priceAsc", productsArray, catName);
     });
 
-    document.getElementById("sortDesc").addEventListener("click", function() {
+    document.getElementById("sortDesc").addEventListener("click", function() { //por precio descendente
       sortAndShow("priceDes", productsArray, catName);
     });
 
-    document.getElementById("sortByCount").addEventListener("click", function() {
+    document.getElementById("sortByCount").addEventListener("click", function() { //por relevancia
       sortAndShow("relevancy", productsArray, catName);
     });
 
@@ -118,7 +118,7 @@ fetch(CARS_URL)
 
 
     document.getElementById("query").addEventListener("input", function(e) {
-        let value = e.target.value.trim().toLowerCase();
+        let value = e.target.value.trim().toLowerCase(); //obtener value del input, saca espacios en blanco y pasa a letra minuscula 
         if (value.length > 0) {
             const searched = productsArray.filter(product => (product.name.toLowerCase().includes(value)) || (product.description.toLowerCase().includes(value)) );
             showCategoriesList(catName, searched);
@@ -129,7 +129,7 @@ fetch(CARS_URL)
 
 
   })
-
+//si aparece un error nos va a salir en la consola un mensaje
   .catch(error => {
     console.error("Error al cargar los datos", error);
   });
