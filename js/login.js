@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    const $submit = document.getElementById("submit");
+    const $submit = document.getElementById("submit"); 
     const $username = document.getElementById("username");
     const $password = document.getElementById("password");
    
@@ -8,24 +8,24 @@ document.addEventListener("DOMContentLoaded", () => {
    
 
     $submit.addEventListener("click", (e) => {
-      var re = /\S+@\S+\.\S+/;
-        if ( $password.value.length >= 6 &&  re.test($username.value)) {
-          e.preventDefault();
-          window.location.href = "index.html";
+      var re = /\S+@\S+\.\S+/;//hace que se deba ingresar @ y punto al input email
+        if ( $password.value.length >= 6 &&  re.test($username.value)) { //Ve que la contraseña tenga al menos 6 digitos
+          e.preventDefault(); //perviene recarga del code
+          window.location.href = "index.html";// te manda al index
         } 
       });
     });
    
 
 document.addEventListener("DOMContentLoaded", function () {
-    const submitButton = document.getElementById("submit");
+    const submitButton = document.getElementById("submit"); 
     const usernameInput = document.getElementById("username");
     const passwordInput = document.getElementById("password");
 
     // Cargar datos guardados del almacenamiento local (si existen)
     const savedUsername = localStorage.getItem("savedUsername");
     const savedPassword = localStorage.getItem("savedPassword");
-    if (savedUsername && savedPassword) {
+    if (savedUsername && savedPassword) { //si los datos estan ingresados previemente te redirige al index directamente
           window.location.href = "index.html";
       usernameInput.value = savedUsername;
       passwordInput.value = savedPassword;
@@ -33,41 +33,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Escuchar el evento de clic en el botón "Iniciar sesion"
     submitButton.addEventListener("click", function () {
-      const username = usernameInput.value;
+      const username = usernameInput.value; 
       const password = passwordInput.value;
 
       // Guardar los datos en el almacenamiento local
-      localStorage.setItem("savedUsername", username);
+      localStorage.setItem("savedUsername", username); 
       localStorage.setItem("savedPassword", password);
 
     });
   });
 
-
+// la funcion sirve para mostrar u ocultar la contraseña
   function mostrarContrasena(){
     var tipo = document.getElementById("password");
     if(tipo.type == "password"){
-        tipo.type = "text";
+        tipo.type = "text";//muestra contraseña
     }else{
-        tipo.type = "password";
+        tipo.type = "password";//oculta la contraseña
     }
 }
 
+
+//Validamos los datos
 (() => {
   'use strict'
 
 
-  const forms = document.querySelectorAll('.needs-validation')
+  const forms = document.querySelectorAll('.needs-validation')// selecciona elementos q tenga la class needs-validation y los guarda en la const forms
 
  
   Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {
       if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
+        event.preventDefault()//hace q no se reenvie
+        event.stopPropagation()//evita la propagacion del propio evento
       }
 
-      form.classList.add('was-validated')
+      form.classList.add('was-validated')//agrega la clase al form para decir que fue validado
     }, false)
   })
 })()
@@ -75,10 +77,10 @@ document.addEventListener("DOMContentLoaded", function () {
 //PARA MOSTRAR EN EL CARRITO
 
 let infoArray = []
-localStorage.setItem("cart", JSON.stringify(infoArray));
+localStorage.setItem("cart", JSON.stringify(infoArray));//guarda array como string en el LS
 const cart = `https://japceibal.github.io/emercado-api/user_cart/25801.json`;
 
-fetch(cart)
+fetch(cart)//solicitud http para obtener datos del carrito 
 .then(response => response.json())
 .then(productData => {
   const article = productData.articles[0]
@@ -87,11 +89,11 @@ fetch(cart)
 .catch(error => {
   console.error("Error al cargar los datos del producto", error);
 });
-
+//funcion para guardar producto en el carrito
 function infoCart(data) {
   array = localStorage.getItem("cart")
-  arrayParse = JSON.parse(array)
+  arrayParse = JSON.parse(array) //convierte a objeto JS
 
-  arrayParse.push(data)
+  arrayParse.push(data)//agrega al producto
   localStorage.setItem("cart", JSON.stringify(arrayParse));
 }
