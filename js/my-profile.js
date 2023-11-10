@@ -5,54 +5,7 @@ const apellidoInput = document.getElementById('validationServer03');
 const apellidoInput2 = document.getElementById('validationServer04');
 const telefonoInput = document.getElementById('validationServer06');
 
-
-  nombreInput.addEventListener('blur', validateNombre);
-  emailInput.addEventListener('blur', validateEmail);
-  apellidoInput.addEventListener('blur', validateApellido);
-  telefonoInput.addEventListener('blur', validateTelefono);
-
-  
-  function validateNombre() { // para validar el campo del modal de primer nombre
-    if (nombreInput.value.trim() !== '') {
-      nombreInput.classList.remove('is-invalid');
-      nombreInput.classList.add('is-valid');
-    } else {
-      nombreInput.classList.remove('is-valid');
-      nombreInput.classList.add('is-invalid');
-    }
-  }
-  
-  
-  function validateEmail() { // para validar el campo del modal email
-    if (emailInput.value.trim() !== '') {
-      emailInput.classList.remove('is-invalid');
-      emailInput.classList.add('is-valid');
-    } else {
-      emailInput.classList.remove('is-valid');
-      emailInput.classList.add('is-invalid');
-    }
-  }
-  
-  function validateApellido() {  //para validar el campo del modal apellido
-    if (apellidoInput.value.trim() !== '') {
-      apellidoInput.classList.remove('is-invalid');
-      apellidoInput.classList.add('is-valid');
-    } else {
-      apellidoInput.classList.remove('is-valid');
-      apellidoInput.classList.add('is-invalid');
-    }
-  }
-
-  function validateTelefono() { //para validar el campo del modal telefono
-    if (telefonoInput.value.trim() !== '') {
-      telefonoInput.classList.remove('is-invalid');
-      telefonoInput.classList.add('is-valid');
-    } else {
-      telefonoInput.classList.remove('is-valid');
-      telefonoInput.classList.add('is-invalid');
-    }
-  }
-
+//VALIDACIONES
   document.getElementById("guardar").addEventListener("click", function () {
     // Obtener todos los campos con el atributo "required"
     const requiredFields = document.querySelectorAll('[required]');
