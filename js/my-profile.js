@@ -91,10 +91,6 @@ function showProfile() {
   }
 }
 
-window.addEventListener("load", () => {
-  showProfile();
-});
-
 const fileInput = document.getElementById('fileInput');
 const previewImage = document.getElementById('previewImage'); 
 

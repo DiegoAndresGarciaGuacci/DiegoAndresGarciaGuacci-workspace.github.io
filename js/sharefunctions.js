@@ -58,7 +58,7 @@ toggleThemeButton.addEventListener('click', function () {
   });
 
 
-  document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function(){
     if (!savedUsername) {
       window.location.href = "login.html"
     }
