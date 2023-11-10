@@ -57,7 +57,7 @@ toggleThemeButton.addEventListener('click', function () {
     }
   });
 
-
+//redirigir si no se esta logueado
 document.addEventListener("DOMContentLoaded", function(){
     if (!savedUsername) {
       window.location.href = "login.html"

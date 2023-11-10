@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(){
-    if (savedUsername && savedPassword) {
+    if (savedUsername && savedPassword) { //verificar si existe un usuario y contrasena en el local (si el usuario hice el log in)
           document.getElementById("autos").addEventListener("click", function() {
             localStorage.setItem("catID", 101);
             window.location = "products.html"
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     
     }else{
-        window.location.href = "login.html";
+        window.location.href = "login.html"; //si no hizo el login se redirije al login
         
     }
 });

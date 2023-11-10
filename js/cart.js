@@ -223,8 +223,8 @@ radioTransferencia.addEventListener('change', function () {
 
 
 
-
-  const calleInput = document.getElementById('form3Examplea2');
+//Validaciones
+  const calleInput = document.getElementById('form3Examplea2'); //Obtenemos el elemento
   const numeroInput = document.getElementById('form3Examplea3');
   const esquinaInput = document.getElementById('form3Examplea4');
 
@@ -233,9 +233,9 @@ radioTransferencia.addEventListener('change', function () {
   esquinaInput.addEventListener('blur', validateEsquina);
 
   function validateCalle() {
-    if (calleInput.value.trim() !== '') {
-      calleInput.classList.remove('is-invalid');
-      calleInput.classList.add('is-valid');
+    if (calleInput.value.trim() !== '') { //verifica si en campo no esta vacio
+      calleInput.classList.remove('is-invalid'); //se elimina la clase de muestra para campos invalidos
+      calleInput.classList.add('is-valid'); //se agrega la clase para campos validos
     } else {
       calleInput.classList.remove('is-valid');
       calleInput.classList.add('is-invalid');

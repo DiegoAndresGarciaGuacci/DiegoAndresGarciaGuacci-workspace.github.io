@@ -1,19 +1,19 @@
 const catID = localStorage.getItem("catID"); //usar el ID de las categorias
 const CARS_URL = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`; /*hicimos la constante con la url*/
 
-function sortCategories(criteria, array) { 
-    let result = [];
-    const precioMin = parseFloat(document.getElementById("rangeFilterCountMin").value);
+function sortCategories(criteria, array) { //funcion inspirada en la proporciona en categories.js
+    let result = []; 
+    const precioMin = parseFloat(document.getElementById("rangeFilterCountMin").value); //se obtiene el valor de los campos de precio
     const precioMax = parseFloat(document.getElementById("rangeFilterCountMax").value);
     if (criteria === "priceDes") {
-        result = array.slice().sort((a, b) => a.cost - b.cost);
+        result = array.slice().sort((a, b) => a.cost - b.cost); //se organiza el array en orden descendente 
     } else if (criteria === "priceAsc") {
-        result = array.slice().sort((a, b) => b.cost - a.cost);
+        result = array.slice().sort((a, b) => b.cost - a.cost); // se invierte la logica para ordenar de forma ascendente
     } else if (criteria === "relevancy") {
-        result = array.slice().sort((a, b) => b.soldCount - a.soldCount);
+        result = array.slice().sort((a, b) => b.soldCount - a.soldCount); //se aplica el mismo orden pero para la cantidad vendida
     } else if (criteria === "rangePrice") {
         if (!isNaN(precioMin) && isNaN(precioMax)) {
-            result = array.filter(product => product.cost >= precioMin);
+            result = array.filter(product => product.cost >= precioMin); //se filtra el array segun el rango de precios
         } else if (isNaN(precioMin) && !isNaN(precioMax)) {
             result = array.filter(product => product.cost <= precioMax);
         } else if (!isNaN(precioMin) && !isNaN(precioMax)) {

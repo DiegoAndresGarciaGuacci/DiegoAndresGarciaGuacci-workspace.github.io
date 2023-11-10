@@ -78,22 +78,22 @@ function setRelatedProductsId(id){
 }
 
 function infoCart(data) {
-  array = localStorage.getItem("cart")
+  array = localStorage.getItem("cart") //obtenemos el elemento cart del local
   arrayParse = JSON.parse(array)
 
-  let info = {  "id": data.id,
+  let info = {  "id": data.id, //creamos un objeto con los datos del producto
   "name": data.name,
   "count": "",
   "unitCost": data.cost,
   "currency": data.currency,
   "image": data.images[0] }
 
-  if (!arrayParse.find(item => item.id === data.id)) {
+  if (!arrayParse.find(item => item.id === data.id)) { //si no se encuentre un elemento con el id del producto, es decir, no se ha agregado, se pushea y se sube al local
     arrayParse.push(info);
     localStorage.setItem("cart", JSON.stringify(arrayParse));
     alert("Producto agregado al carrito");
   } else {
-    alert("Este producto ya está en el carrito");
+    alert("Este producto ya está en el carrito"); //si ya fue agregado se activa un aviso
   }
 }
 
