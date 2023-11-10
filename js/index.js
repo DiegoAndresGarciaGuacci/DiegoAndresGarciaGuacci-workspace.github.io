@@ -1,5 +1,3 @@
-const savedPassword = localStorage.getItem("savedPassword");
-
 document.addEventListener("DOMContentLoaded", function(){
     if (savedUsername && savedPassword) {
           document.getElementById("autos").addEventListener("click", function() {
